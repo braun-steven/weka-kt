@@ -7,7 +7,7 @@ To add Weka-Kt to your project, add the following dependency to your pom file:
 <dependency>
     <groupId>com.github.slang03</groupId>
     <artifactId>weka-kt</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 </dependency>
 ```
 

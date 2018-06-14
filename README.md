@@ -5,7 +5,7 @@ A set of Kotlin extensions for Weka. The goal is to make the use of Weka more co
 To add Weka-Kt to your project, add the following dependency to your pom file:
 ```xml
 <dependency>
-    <groupId>com.slang03</groupId>
+    <groupId>com.github.slang03</groupId>
     <artifactId>weka-kt</artifactId>
     <version>0.0.1</version>
 </dependency>

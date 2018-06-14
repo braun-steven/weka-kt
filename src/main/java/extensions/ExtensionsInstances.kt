@@ -16,6 +16,7 @@ import java.io.File
  */
 
 operator fun Instances.get(i: Int): Instance = this.instance(i)
+
 operator fun Instances.get(i: Int, attributeIndex: Int) = this[i][attributeIndex]
 operator fun Instances.get(i: Int, attribute: Attribute) = this[i][attribute]
 
@@ -80,4 +81,24 @@ fun <T : Filter> Instances.filter(filter: T, body: T.() -> Unit): Instances {
     return Filter.useFilter(this, filter)
 }
 
+
+/**
+ * Cannot directly overload [Instances.equals] via extensions as they are statically resolved.
+ */
+fun Instances.isEquals(other: Any?): Boolean {
+    if (other == null) {
+        return false
+    }
+
+    if (other !is Instances) {
+        return false
+    }
+
+    if (other.numAttributes != this.numAttributes) {
+        return false
+    }
+
+    // Check if all values match
+    return (0 until this.numAttributes).all { i -> this[i].isEquals(other[i]) }
+}
 

@@ -51,4 +51,27 @@ class ExtensionsInstancesTest {
 
         Assert.assertTrue(filteredWeka.isEquals(filteredKotlin))
     }
+
+    @Test
+    fun testSplit(){
+        val percentage = 33.0
+        val (split1, split2) = iris.split(percentage)
+
+        val removePercentage1 = RemovePercentage()
+        removePercentage1.percentage = percentage
+        removePercentage1.setInputFormat(iris)
+
+        val removePercentage2 = RemovePercentage()
+        removePercentage2.percentage = percentage
+        removePercentage2.invertSelection = true
+        removePercentage2.setInputFormat(iris)
+
+        val split1Weka = Filter.useFilter(iris, removePercentage1)
+        val split2Weka = Filter.useFilter(iris, removePercentage2)
+
+        Assert.assertEquals(split1.size, split1Weka.size)
+        Assert.assertEquals(split2.size, split2Weka.size)
+        Assert.assertTrue(split1.isEquals(split1Weka))
+        Assert.assertTrue(split2.isEquals(split2Weka))
+    }
 }

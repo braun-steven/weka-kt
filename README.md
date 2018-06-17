@@ -1,11 +1,20 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.slang03/weka-kt.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.slang03%22%20a%3A%22weka-kt%22)
 
 # Weka-Kt: Kotlin Extensions for Weka
-A set of Kotlin extensions for Weka. The goal is to make the use of Weka more convenient and ideomatic.
+A set of Kotlin extensions for [Weka](https://www.cs.waikato.ac.nz/ml/weka/). The goal is to make the use of Weka more convenient and idiomatic.
+
+Available extensions:
+- [Loading Data](#Loading-Data)
+- [Getting/Setting Data](#Getting/Setting-Data)
+- [Using Filters](#Using-Filters)
+- [Create Holdout Split](#Create-Holdout-Split)
+- [Perform Holdout Evaluation](#Perform-Holdout-Evaluation)
+- [Perform Cross Validation](#Perform-Cross-Validation)
 
 ## Getting Started
-To add Weka-Kt to your project, add the following dependency to your pom file:
+To add Weka-Kt to your project, add the following dependency to your dependency manager:
 
+**Maven** 
 ```xml
 <dependency>
     <groupId>com.github.slang03</groupId>
@@ -14,6 +23,10 @@ To add Weka-Kt to your project, add the following dependency to your pom file:
 </dependency>
 ```
 
+**Gradle**
+```
+compile 'com.github.slang03:weka-kt:0.0.2'
+```
 ___
 
 ## Extensions

@@ -20,7 +20,7 @@ ___
 
 ### Loading Data
 
-#### Java
+**Java**
 
 ```java
 ArffLoader loader = new ArffLoader();
@@ -29,7 +29,7 @@ Instances irisData = loader.getDataSet();
 irisData.setClassIndex(4);
 ```
 
-#### Kotlin
+**Kotlin**
 
 ```kotlin
 var irisData = Instances("src/test/resources/datasets/iris.arff", classIndex = 4)
@@ -37,7 +37,7 @@ var irisData = Instances("src/test/resources/datasets/iris.arff", classIndex = 4
 
 ### Getting/Setting Data
 
-#### Java
+**Java**
 
 ```java
 // Get row
@@ -61,7 +61,7 @@ editRow.setValue(3, 100.0);
 irisData.set(6, editRow);
 ```
 
-#### Kotlin
+**Kotlin**
 
 ```kotlin
 // Get row
@@ -84,7 +84,7 @@ irisData[6, 3] = 100.0
 ```
 ### Using Filters
 
-#### Java
+**Java**
 
 ```java
 // Filter percentage
@@ -110,7 +110,7 @@ resample.setInputFormat(irisData);
 irisData = Filter.useFilter(irisData, resample);
 ```
 
-#### Kotlin
+**Kotlin**
 
 ```kotlin
 // Filter percentage
@@ -133,7 +133,7 @@ irisData = irisData.filter(Resample()) {
 }
 ```
 
-#### Kotlin (Chaining Filters):
+**Kotlin** (Chaining Filters)
 
 ```kotlin
 // Chain Filters
@@ -152,7 +152,7 @@ irisData = irisData.filter(RemovePercentage()) { // Filter percentage
 
 ### Create Holdout Split
 
-#### Java
+**Java**
 
 ```java
 // Create filter for train set
@@ -171,7 +171,7 @@ Instances train = Filter.useFilter(irisData, removePercentageTrain);
 Instances test = Filter.useFilter(irisData, removePercentageTest);
 ```
 
-#### Kotlin
+**Kotlin**
 
 ```kotlin
 val (train, test) = irisData.split(testPercentage = 33.0)
@@ -179,7 +179,7 @@ val (train, test) = irisData.split(testPercentage = 33.0)
 
 ### Perform Holdout Evaluation
 
-#### Java
+**Java**
 
 ```java
 // Create and build classifier
@@ -192,7 +192,7 @@ eval.evaluateModel(j48, test);
 System.out.println(eval.toSummaryString());
 ```
 
-#### Kotlin
+**Kotlin**
 
 ```kotlin
 // Create classifier
@@ -203,7 +203,7 @@ val eval = j48.evaluateHoldout(trainData = train, testData = test)
 println(eval.toSummaryString())
 ```
 
-#### Kotlin (Implicit Split)
+**Kotlin** (Implicit Split)
 
 ```kotlin
 ...
@@ -211,7 +211,7 @@ val eval = j48.evaluateHoldout(data = data, testPercentage = 33.0)
 ```
 ### Perform Cross Validation
 
-#### Java
+**Java**
 
 ```java
 // Create classifier
@@ -225,7 +225,7 @@ eval.crossValidateModel(j48, irisData, numFolds, rand);
 System.out.println(eval.toSummaryString());
 ```
 
-#### Kotlin
+**Kotlin**
 
 ```kotlin
 // Create classifier

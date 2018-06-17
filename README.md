@@ -4,12 +4,12 @@
 A set of Kotlin extensions for [Weka](https://www.cs.waikato.ac.nz/ml/weka/). The goal is to make the use of Weka more convenient and idiomatic.
 
 Available extensions:
-- [Loading Data](#Loading-Data)
-- [Getting/Setting Data](#Getting/Setting-Data)
-- [Using Filters](#Using-Filters)
-- [Create Holdout Split](#Create-Holdout-Split)
-- [Perform Holdout Evaluation](#Perform-Holdout-Evaluation)
-- [Perform Cross Validation](#Perform-Cross-Validation)
+- [Loading Data](#loading-data)
+- [Getting/Setting Data](#gettingsetting-data)
+- [Using Filters](#using-filters)
+- [Create Holdout Split](#create-holdout-split)
+- [Perform Holdout Evaluation](#perform-holdout-evaluation)
+- [Perform Cross Validation](#perform-cross-validation)
 
 ## Getting Started
 To add Weka-Kt to your project, add the following dependency to your dependency manager:

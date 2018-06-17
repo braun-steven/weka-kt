@@ -7,6 +7,7 @@ import weka.core.converters.ArffLoader
 import weka.core.converters.CSVLoader
 import weka.core.converters.Loader
 import weka.filters.Filter
+import weka.filters.unsupervised.instance.RemovePercentage
 import java.io.File
 
 /**
@@ -61,8 +62,8 @@ fun Instances(filePath: String, classIndex: Int = -1): Instances {
     val dataSet = loader.dataSet
 
     // Set class index
-    if (classIndex > 0) {
-        dataSet.classIndex = -1
+    if (classIndex >= 0) {
+        dataSet.classIndex = classIndex
     }
 
     return dataSet
@@ -75,7 +76,7 @@ fun Instances(filePath: String, classIndex: Int = -1): Instances {
  * @param body Filter function body
  * @param T inheriting from [Filter]
  */
-fun <T : Filter> Instances.filter(filter: T, body: T.() -> Unit): Instances {
+fun <T : Filter> Instances.filter(filter: T, body: T.() -> Unit = {}): Instances {
     filter.body()
     filter.setInputFormat(this)
     return Filter.useFilter(this, filter)
@@ -98,7 +99,27 @@ fun Instances.isEquals(other: Any?): Boolean {
         return false
     }
 
+    if (other.size != this.size) {
+        return false
+    }
+
     // Check if all values match
-    return (0 until this.numAttributes).all { i -> this[i].isEquals(other[i]) }
+    return (0 until this.size).all { i -> this[i].isEquals(other[i]) }
+}
+
+/**
+ * Split this dataset into two separate sets with a given splitpercentage.
+ *
+ * @param testPercentage Test split percentage.
+ */
+fun Instances.split(testPercentage: Double): Pair<Instances, Instances> {
+    // Define filter according to the given split percentage
+    val removePercentage = RemovePercentage().apply { this.percentage = testPercentage }
+
+    // Split dataset
+    val split1 = this.filter(removePercentage)
+    val split2 = this.filter(removePercentage, { invertSelection = true })
+
+    return Pair(split1, split2)
 }
 

@@ -1,10 +1,11 @@
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.slang03/weka-kt.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.slang03%22%20a%3A%22weka-kt%22)
+[![Maven Central](https://img.shields.io/maven####central/v/com.github.slang03/weka####kt.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.slang03%22%20a%3A%22weka####kt%22)
 
-# Weka-Kt: Kotlin Extensions for Weka
+# Weka####Kt: Kotlin Extensions for Weka
 A set of Kotlin extensions for Weka. The goal is to make the use of Weka more convenient and ideomatic.
 
 ## Getting Started
 To add Weka-Kt to your project, add the following dependency to your pom file:
+
 ```xml
 <dependency>
     <groupId>com.github.slang03</groupId>
@@ -16,20 +17,26 @@ To add Weka-Kt to your project, add the following dependency to your pom file:
 ## Extensions
 
 ### Loading Data
-- Java
+
+#### Java
+
 ```java
 ArffLoader loader = new ArffLoader();
 loader.setFile(new File("src/test/resources/datasets/iris.arff"));
 Instances irisData = loader.getDataSet();
 irisData.setClassIndex(4);
 ```
-- Kotlin
+
+#### Kotlin
+
 ```kotlin
 var irisData = Instances("src/test/resources/datasets/iris.arff", classIndex = 4)
 ```
 
 ### Getting/Setting Data
-- Java
+
+#### Java
+
 ```java
 // Get row
 Instance row = irisData.get(5);
@@ -51,7 +58,9 @@ Instance editRow = irisData.get(6);
 editRow.setValue(3, 100.0);
 irisData.set(6, editRow);
 ```
-- Kotlin
+
+#### Kotlin
+
 ```kotlin
 // Get row
 val row = irisData[5]
@@ -72,7 +81,9 @@ irisData[6] = row
 irisData[6, 3] = 100.0
 ```
 ### Using Filters
-- Java
+
+#### Java
+
 ```java
 // Filter percentage
 RemovePercentage removePercentage = new RemovePercentage();
@@ -96,7 +107,9 @@ resample.setSampleSizePercent(66.0);
 resample.setInputFormat(irisData);
 irisData = Filter.useFilter(irisData, resample);
 ```
-- Kotlin
+
+#### Kotlin
+
 ```kotlin
 // Filter percentage
 irisData = irisData.filter(RemovePercentage()) {
@@ -116,4 +129,107 @@ irisData = irisData.filter(Resample()) {
     randomSeed = 42
     sampleSizePercent = 66.0
 }
+```
+
+#### Kotlin (chaining filters):
+
+```kotlin
+// Chain Filters
+irisData = irisData.filter(RemovePercentage()) { // Filter percentage
+    percentage = 20.0
+    invertSelection = true
+}.filter(Remove()) { // Filter attributes
+    attributeIndices = "1,2"
+    invertSelection = false
+}.filter(Resample()) { // Resample data
+    noReplacement = false
+    randomSeed = 42
+    sampleSizePercent = 66.0
+}
+```
+
+### Create Holdout Split
+
+#### Java
+
+```java
+// Create filter for train set
+RemovePercentage removePercentageTrain = new RemovePercentage();
+removePercentageTrain.setPercentage(33.0);
+removePercentageTrain.setInputFormat(irisData);
+
+// Create filter for test set
+RemovePercentage removePercentageTest = new RemovePercentage();
+removePercentageTest.setPercentage(33.0);
+removePercentageTest.setInvertSelection(true);
+removePercentageTest.setInputFormat(irisData);
+
+// User filters and generate train/test sets
+Instances train = Filter.useFilter(irisData, removePercentageTrain);
+Instances test = Filter.useFilter(irisData, removePercentageTest);
+```
+
+#### Kotlin
+
+```kotlin
+val (train, test) = irisData.split(testPercentage = 33.0)
+```
+
+### Perform Holdout Evaluation
+
+#### Java
+
+```java
+// Create and build classifier
+J48 j48 = new J48();
+j48.buildClassifier(train);
+
+// Evaluate model
+Evaluation eval = new Evaluation(train);
+eval.evaluateModel(j48, test);
+System.out.println(eval.toSummaryString());
+```
+
+#### Kotlin
+
+```kotlin
+// Create classifier
+val j48 = J48()
+
+// Evaluate classifier
+val eval = j48.evaluateHoldout(trainData = train, testData = test)
+println(eval.toSummaryString())
+```
+
+#### Kotlin (Implicit Split)
+
+```kotlin
+...
+val eval = j48.evaluateHoldout(data = data, testPercentage = 33.0)
+```
+### Perform Cross Validation
+
+#### Java
+
+```java
+// Create classifier
+J48 j48 = new J48();
+
+// Create cross validation
+int numFolds = 10;
+Random rand = new Random(1);
+Evaluation eval = new Evaluation(irisData);
+eval.crossValidateModel(j48, irisData, numFolds, rand);
+System.out.println(eval.toSummaryString());
+```
+
+#### Kotlin
+
+```kotlin
+// Create classifier
+val j48 = J48()
+
+// Create cross validation
+val eval = j48.evaluateCrossValidation(data = irisData, numFolds = 10, seed = 1)
+println(eval.toSummaryString())
 ```

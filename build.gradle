@@ -78,7 +78,7 @@ publishing {
 
             groupId 'com.github.slang03'
             artifactId 'weka-kt'
-            version '0.0.3'
+            version '0.0.3-SNAPSHOT'
 
             pom {
                 name = "weka-kt"

@@ -78,7 +78,7 @@ publishing {
 
             groupId 'com.github.slang03'
             artifactId 'weka-kt'
-            version '0.0.3-SNAPSHOT'
+            version project.version.replace("-SNAPSHOT","")
 
             pom {
                 name = "weka-kt"
@@ -111,7 +111,6 @@ publishing {
             url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
 
             credentials {
-                println(project.nexusUsername)  //prints the value
                 username = project.nexusUsername
                 password = project.nexusPassword
             }

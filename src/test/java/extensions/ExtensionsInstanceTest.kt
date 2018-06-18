@@ -11,17 +11,7 @@ import weka.core.Instances
  *
  * @author Steven Lang
  */
-class ExtensionsInstanceTest {
-
-    /**
-     * Test dataset
-     */
-    private lateinit var iris: Instances
-
-    @Before
-    fun init() {
-        iris = Instances("src/test/resources/datasets/iris.arff")
-    }
+class ExtensionsInstanceTest : BaseTest() {
 
     @Test
     fun testGetSet() {
@@ -29,7 +19,7 @@ class ExtensionsInstanceTest {
         for (i in 0 until iris.size) {
             irisCopy.add(DenseInstance(iris.numAttributes()))
 
-            for(j in 0 until iris[i].numAttributes){
+            for (j in 0 until iris[i].numAttributes) {
                 irisCopy[i, j] = iris[i, j]
             }
         }

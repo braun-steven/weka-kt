@@ -13,17 +13,8 @@ import weka.filters.unsupervised.instance.RemovePercentage
  *
  * @author Steven Lang
  */
-class ExtensionsInstancesTest {
+class ExtensionsInstancesTest : BaseTest() {
 
-    /**
-     * Test dataset
-     */
-    private lateinit var iris: Instances
-
-    @Before
-    fun init() {
-        iris = Instances("src/test/resources/datasets/iris.arff")
-    }
 
     @Test
     fun testGetSet() {
@@ -53,7 +44,7 @@ class ExtensionsInstancesTest {
     }
 
     @Test
-    fun testSplit(){
+    fun testSplit() {
         val percentage = 33.0
         val (split1, split2) = iris.split(percentage)
 

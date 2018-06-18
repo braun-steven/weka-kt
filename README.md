@@ -95,6 +95,28 @@ irisData[6] = row
 // Set value at index (6,3)
 irisData[6, 3] = 100.0
 ```
+
+**Kotlin** (slices)
+```kotlin
+// Get rows in the interval [5, 20]
+val sliceRows = irisData.sliceRows(5..20)
+
+// Get attributes in the interval [2..3]
+val sliceAtts = irisData.sliceAttributes(2..3)
+
+// Combine row and attribute slicing
+val slice = irisData.slice(1..2, 1..3)
+
+// Combine row and attribute slicing using array accessor
+val subset = irisData[1..2, 3..3]
+
+// Slice rows by explicit index
+val rows = irisData.sliceRows(5, 25, 50, 75)
+
+// Slice rows by explicit index
+val attributes = irisData.sliceAttributes(0, 1, 3)
+```
+
 ### Using Filters
 
 **Java**

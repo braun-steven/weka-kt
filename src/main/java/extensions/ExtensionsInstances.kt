@@ -7,7 +7,9 @@ import weka.core.converters.ArffLoader
 import weka.core.converters.CSVLoader
 import weka.core.converters.Loader
 import weka.filters.Filter
+import weka.filters.unsupervised.attribute.Remove
 import weka.filters.unsupervised.instance.RemovePercentage
+import weka.filters.unsupervised.instance.RemoveRange
 import java.io.File
 
 /**
@@ -123,3 +125,82 @@ fun Instances.split(testPercentage: Double): Pair<Instances, Instances> {
     return Pair(split1, split2)
 }
 
+/**
+ * Slice the given range of attributes out of the dataset.
+ *
+ * @param range Range of ints indicating the slice interval
+ * @return Subset of this dataset, that is only the attributes in the given range are in the result
+ */
+fun Instances.sliceAttributes(range: IntRange): Instances {
+    return this.filter(Remove()) {
+        val rangeString = "${range.start + 1}-${range.endInclusive + 1}"
+        invertSelection = true
+        attributeIndices = rangeString
+    }
+}
+
+
+/**
+ * Slice the given range of rows out of the dataset.
+ *
+ * @param range Range of ints indicating the slice interval
+ * @return Subset of this dataset, that is only the rows in the given range are in the result
+ */
+fun Instances.sliceRows(range: IntRange): Instances {
+    return this.filter(RemoveRange()) {
+        invertSelection = true
+        instancesIndices = "${range.start + 1}-${range.endInclusive + 1}"
+    }
+}
+
+/**
+ * Slice the given range of attributes out of the dataset.
+ *
+ * @param rangeRows Range of ints indicating the row slice interval
+ * @param rangeAttributes Range of ints indicating the attribute slice interval
+ * @return Subset of this dataset, that is only the attributes and rows in the given ranges are in
+ * the result
+ */
+fun Instances.slice(rangeRows: IntRange, rangeAttributes: IntRange): Instances {
+    return this.sliceRows(rangeRows).sliceAttributes(rangeAttributes)
+}
+
+/**
+ * Get the subset of rows with the given indices.
+ *
+ * @param indices List of indices to return the rows of
+ * @return Subset of this dataset containing only the rows specified in [indices]
+ */
+fun Instances.sliceRows(vararg indices: Int): Instances {
+    return this.filter(RemoveRange()) {
+        val rangeString = indices.joinToString(separator = ",", transform = { i -> "${i + 1}" })
+        invertSelection = true
+        instancesIndices = rangeString
+    }
+}
+/**
+ * Get the subset of attributes with the given indices.
+ *
+ * @param indices List of indices to return the attributes of
+ * @return Subset of this dataset containing only the attributes specified in [indices]
+ */
+fun Instances.sliceAttributes(vararg indices: Int): Instances {
+    return this.filter(Remove()) {
+        val rangeString = indices.joinToString(separator = ",", transform = { i -> "${i + 1}" })
+        invertSelection = true
+        attributeIndices = rangeString
+    }
+}
+
+/**
+ * Slice the given range of attributes out of the dataset.
+ *
+ * @param rangeRows Range of ints indicating the row slice interval
+ * @param rangeAttributes Range of ints indicating the attribute slice interval
+ * @return Subset of this dataset, that is only the attributes and rows in the given ranges are in
+ * the result
+ * @see [Instances.slice]
+ */
+operator fun Instances.get(rangeRows: IntRange, rangeAttributes: IntRange): Instances {
+    return slice(rangeRows, rangeAttributes)
+}

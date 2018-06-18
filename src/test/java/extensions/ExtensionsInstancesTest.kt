@@ -32,7 +32,7 @@ class ExtensionsInstancesTest {
             irisCopy.add(DenseInstance(iris.numAttributes()))
             irisCopy[i] = iris[i]
 
-            Assert.assertTrue(iris[i].isEquals(irisCopy[i]))
+            Assert.assertTrue(iris[i].isEqualTo(irisCopy[i]))
         }
     }
 
@@ -49,7 +49,7 @@ class ExtensionsInstancesTest {
             percentage = 20.0
         }
 
-        Assert.assertTrue(filteredWeka.isEquals(filteredKotlin))
+        Assert.assertTrue(filteredWeka.isEqualTo(filteredKotlin))
     }
 
     @Test
@@ -71,7 +71,7 @@ class ExtensionsInstancesTest {
 
         Assert.assertEquals(split1.size, split1Weka.size)
         Assert.assertEquals(split2.size, split2Weka.size)
-        Assert.assertTrue(split1.isEquals(split1Weka))
-        Assert.assertTrue(split2.isEquals(split2Weka))
+        Assert.assertTrue(split1.isEqualTo(split1Weka))
+        Assert.assertTrue(split2.isEqualTo(split2Weka))
     }
 }

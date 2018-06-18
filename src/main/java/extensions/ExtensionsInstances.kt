@@ -86,7 +86,7 @@ fun <T : Filter> Instances.filter(filter: T, body: T.() -> Unit = {}): Instances
 /**
  * Cannot directly overload [Instances.equals] via extensions as they are statically resolved.
  */
-fun Instances.isEquals(other: Any?): Boolean {
+fun Instances.isEqualTo(other: Any?): Boolean {
     if (other == null) {
         return false
     }
@@ -104,7 +104,7 @@ fun Instances.isEquals(other: Any?): Boolean {
     }
 
     // Check if all values match
-    return (0 until this.size).all { i -> this[i].isEquals(other[i]) }
+    return (0 until this.size).all { i -> this[i].isEqualTo(other[i]) }
 }
 
 /**

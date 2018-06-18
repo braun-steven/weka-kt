@@ -5,8 +5,6 @@ import org.junit.Before
 import org.junit.Test
 import weka.core.DenseInstance
 import weka.core.Instances
-import weka.filters.Filter
-import weka.filters.unsupervised.instance.RemovePercentage
 
 /**
  * Tests for Weka [weka.core.Instance] extensions.
@@ -36,6 +34,6 @@ class ExtensionsInstanceTest {
             }
         }
 
-        Assert.assertTrue(iris.isEquals(irisCopy))
+        Assert.assertTrue(iris.isEqualTo(irisCopy))
     }
 }

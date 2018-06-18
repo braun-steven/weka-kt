@@ -23,7 +23,7 @@ val Instance.numAttributes: Int
 /**
  * Cannot directly overload [Instance.equals] via extensions as they are statically resolved.
  */
-fun Instance.isEquals(other: Any?): Boolean {
+fun Instance.isEqualTo(other: Any?): Boolean {
     if (other == null) {
         return false
     }

@@ -1,4 +1,4 @@
-package extensions
+package com.github.slang03.wekakt.extensions
 
 import weka.core.Attribute
 import weka.core.Instance
@@ -12,9 +12,9 @@ import weka.core.Instance
 operator fun Instance.get(attributeIndex: Int) = this.value(attributeIndex)
 
 operator fun Instance.get(attribute: Attribute) = this.value(attribute)
-operator fun Instance.set(attributeIndex: Int, value: Double) = this.setValue(attributeIndex, value)
+operator fun Instance.set(attributeIndex: Int, value: Number) = this.setValue(attributeIndex, value.toDouble())
 operator fun Instance.set(attributeIndex: Int, value: String) = this.setValue(attributeIndex, value)
-operator fun Instance.set(attribute: Attribute, value: Double) = this.setValue(attribute, value)
+operator fun Instance.set(attribute: Attribute, value: Number) = this.setValue(attribute, value.toDouble())
 operator fun Instance.set(attribute: Attribute, value: String) = this.setValue(attribute, value)
 
 val Instance.numAttributes: Int

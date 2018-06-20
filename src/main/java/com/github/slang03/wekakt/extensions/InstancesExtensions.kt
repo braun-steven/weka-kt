@@ -1,4 +1,4 @@
-package extensions
+package com.github.slang03.wekakt.extensions
 
 import weka.core.Attribute
 import weka.core.Instance
@@ -24,8 +24,8 @@ operator fun Instances.get(i: Int, attributeIndex: Int) = this[i][attributeIndex
 operator fun Instances.get(i: Int, attribute: Attribute) = this[i][attribute]
 
 operator fun Instances.set(i: Int, instance: Instance): Instance = this.set(i, instance)
-operator fun Instances.set(i: Int, attributeIndex: Int, value: Double) = this[i].set(attributeIndex, value)
-operator fun Instances.set(i: Int, attribute: Attribute, value: Double) = this[i].set(attribute, value)
+operator fun Instances.set(i: Int, attributeIndex: Int, value: Number) = this[i].set(attributeIndex, value)
+operator fun Instances.set(i: Int, attribute: Attribute, value: Number) = this[i].set(attribute, value)
 operator fun Instances.set(i: Int, attributeIndex: Int, value: String) = this[i].set(attributeIndex, value)
 operator fun Instances.set(i: Int, attribute: Attribute, value: String) = this[i].set(attribute, value)
 

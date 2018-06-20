@@ -217,24 +217,19 @@ val (train, test) = irisData.split(testPercentage = 33.0)
 **Java**
 
 ```java
-// Create and build classifier
-J48 j48 = new J48();
-j48.buildClassifier(train);
+// Build classifier first
+clf.buildClassifier(train);
 
 // Evaluate model
 Evaluation eval = new Evaluation(train);
-eval.evaluateModel(j48, test);
+eval.evaluateModel(clf, test);
 System.out.println(eval.toSummaryString());
 ```
 
 **Kotlin**
 
 ```kotlin
-// Create classifier
-val j48 = J48()
-
-// Evaluate classifier
-val eval = j48.evaluateHoldout(trainData = train, testData = test)
+val eval = clf.evaluateHoldout(trainData = train, testData = test)
 println(eval.toSummaryString())
 ```
 
@@ -242,31 +237,40 @@ println(eval.toSummaryString())
 
 ```kotlin
 ...
-val eval = j48.evaluateHoldout(data = data, testPercentage = 33.0)
+val eval = clf.evaluateHoldout(data = data, testPercentage = 33.0)
 ```
 ### Perform Cross Validation
 
 **Java**
 
 ```java
-// Create classifier
-J48 j48 = new J48();
-
 // Create cross validation
 int numFolds = 10;
 Random rand = new Random(1);
 Evaluation eval = new Evaluation(irisData);
-eval.crossValidateModel(j48, irisData, numFolds, rand);
+eval.crossValidateModel(clf, irisData, numFolds, rand);
 System.out.println(eval.toSummaryString());
 ```
 
 **Kotlin**
 
 ```kotlin
-// Create classifier
-val j48 = J48()
-
 // Create cross validation
-val eval = j48.evaluateCrossValidation(data = irisData, numFolds = 10, seed = 1)
+val eval = clf.evaluateCrossValidation(data = irisData, numFolds = 10, seed = 1)
 println(eval.toSummaryString())
+```
+
+### Setting Options
+
+**Java**
+
+```java
+String[] options = Utils.splitOptions("-M 5 -U");
+clf.setOptions(options);
+```
+
+**Kotlin**
+
+```kotlin
+clf.setOptions("-M 5 -U")
 ```

@@ -3,6 +3,7 @@ package com.github.slang03.wekakt.extensions
 import weka.core.Attribute
 import weka.core.Instance
 import weka.core.Instances
+import weka.core.WekaException
 import weka.core.converters.ArffLoader
 import weka.core.converters.CSVLoader
 import weka.core.converters.Loader
@@ -178,6 +179,7 @@ fun Instances.sliceRows(vararg indices: Int): Instances {
         instancesIndices = rangeString
     }
 }
+
 /**
  * Get the subset of attributes with the given indices.
  *
@@ -203,4 +205,27 @@ fun Instances.sliceAttributes(vararg indices: Int): Instances {
  */
 operator fun Instances.get(rangeRows: IntRange, rangeAttributes: IntRange): Instances {
     return slice(rangeRows, rangeAttributes)
+}
+
+/**
+ * Remove a given attribute by index.
+ * @param attIndex Attribute index
+ * @return This data without the specified attribute
+ */
+fun Instances.removeAttribute(attIndex: Int): Instances {
+    return filter(Remove()) {
+        attributeIndices = (attIndex + 1).toString()
+    }
+}
+
+/**
+ * Remove the class attribute of this dataset.
+ * @return This data without the class attribute
+ */
+fun Instances.removeClassAttribute(): Instances {
+    if (this.classIndex >= 0) {
+        return removeAttribute(classIndex)
+    } else {
+        throw WekaException("Dataset does not define a class attribute. Class index was $classIndex.")
+    }
 }

@@ -1,12 +1,13 @@
 package com.github.slang03.wekakt.extensions
 
-import assertPredictionsAreEqual
-import getIris
-import org.jetbrains.spek.api.dsl.*
+import com.github.slang03.wekakt.extensions.*
+import com.github.slang03.wekakt.getIris
+import org.amshove.kluent.shouldEqualTo
+import org.jetbrains.spek.api.dsl.given
+import org.jetbrains.spek.api.dsl.it
+import org.jetbrains.spek.api.dsl.on
 import org.jetbrains.spek.subject.SubjectSpek
 import weka.core.Instance
-import com.github.slang03.wekakt.extensions.*
-import org.amshove.kluent.shouldEqualTo
 
 /**
  * Specifications for Weka [weka.core.Instance] extensions.
@@ -22,14 +23,14 @@ object InstanceExtensionsSpec : SubjectSpek<Instance>({
         return@subject iris[0]
     }
 
-    given("the first iris datapoint"){
-        on("setting attribute values"){
-            for(i in 0 until subject.numAttributes){
+    given("the first iris datapoint") {
+        on("setting attribute values") {
+            for (i in 0 until subject.numAttributes) {
                 subject[i] = 100 + i
             }
 
-            it("should have the new values"){
-                for(i in 0 until subject.numAttributes){
+            it("should have the new values") {
+                for (i in 0 until subject.numAttributes) {
                     subject[i] shouldEqualTo (100 + i).toDouble()
                 }
             }

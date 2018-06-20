@@ -1,7 +1,6 @@
+package com.github.slang03.wekakt
+
 import com.github.slang03.wekakt.extensions.isEqualTo
-import org.amshove.kluent.should
-import org.amshove.kluent.shouldBe
-import org.amshove.kluent.shouldBeGreaterThan
 import org.amshove.kluent.shouldBeLessThan
 import org.junit.Assert
 import weka.classifiers.evaluation.Prediction
@@ -26,9 +25,9 @@ infix fun Prediction.shouldEqualTo(other: Prediction) {
     val y2Weight = other.weight();
 
     // Assert equality
-    (y1True - y2True).absoluteValue `shouldBeLessThan` 1e-7
-    (y1Pred - y2Pred).absoluteValue `shouldBeLessThan` 1e-7
-    (y1Weight - y2Weight).absoluteValue `shouldBeLessThan` 1e-7
+    (y1True - y2True).absoluteValue `shouldBeLessThan` DOUBLE_EQ_PRECISION
+    (y1Pred - y2Pred).absoluteValue `shouldBeLessThan` DOUBLE_EQ_PRECISION
+    (y1Weight - y2Weight).absoluteValue `shouldBeLessThan` DOUBLE_EQ_PRECISION
 }
 
 /**

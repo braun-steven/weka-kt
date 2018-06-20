@@ -1,9 +1,11 @@
 package com.github.slang03.wekakt.extensions
 
-import getIris
-import org.jetbrains.spek.api.dsl.*
+import com.github.slang03.wekakt.getIris
+import com.github.slang03.wekakt.shouldEqualTo
+import org.jetbrains.spek.api.dsl.given
+import org.jetbrains.spek.api.dsl.it
+import org.jetbrains.spek.api.dsl.on
 import org.jetbrains.spek.subject.SubjectSpek
-import shouldEqualTo
 import weka.core.DenseInstance
 import weka.core.Instances
 import weka.filters.Filter

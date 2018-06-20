@@ -1,7 +1,19 @@
+package com.github.slang03.wekakt
+
 import com.github.slang03.wekakt.extensions.Instances
 import weka.classifiers.evaluation.Prediction
 import java.util.ArrayList
 
+/**
+ * Precision of double equality
+ */
+const val DOUBLE_EQ_PRECISION = 1e-7
+
+/**
+ * Read the iris dataset.
+ *
+ * @return Iris dataset
+ */
 fun getIris() = Instances("src/test/resources/datasets/iris.arff", classIndex = 4)
 
 /**

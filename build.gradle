@@ -12,6 +12,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.adaptc.gradle:nexus-workflow:0.6'
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0'
     }
 }
 
@@ -25,9 +26,22 @@ plugins {
     id 'signing'
 }
 
+
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+junitPlatform {
+    filters {
+        engines {
+            include 'spek'
+        }
+    }
+}
+
 ext.kotlin_version = '1.2.50'
 ext.weka_version = '3.8.2'
 ext.dokka_version = '0.9.17'
+ext.kluent_version = '1.38'
+ext.spek_version = '1.1.5'
 
 
 // Define project dependencies
@@ -35,7 +49,25 @@ dependencies {
     compile "nz.ac.waikato.cms.weka:weka-stable:$weka_version"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation "org.jetbrains.kotlin:kotlin-test"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit"
+//    testImplementation 'junit:junit:4.12'
+
+    testCompile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    testCompile ("org.jetbrains.spek:spek-api:$spek_version") {
+        exclude group: 'org.jetbrains.kotlin'
+    }
+    testCompile ("org.jetbrains.spek:spek-subject-extension:$spek_version") {
+        exclude group: 'org.jetbrains.kotlin'
+    }
+    testCompile "org.jetbrains.spek:spek-subject-extension:$spek_version"
+    testRuntime ("org.jetbrains.spek:spek-junit-platform-engine:$spek_version") {
+        exclude group: 'org.junit.platform'
+        exclude group: 'org.jetbrains.kotlin'
+    }
+
+    // Assertion framework
+    testImplementation "org.amshove.kluent:kluent:$kluent_version"
 }
 
 // In this section you declare where to find the dependencies of your project
@@ -44,6 +76,7 @@ repositories {
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
     mavenCentral()
+    maven { url "http://dl.bintray.com/jetbrains/spek" }
 }
 
 // Dokka setup
@@ -53,7 +86,7 @@ dokka {
 }
 
 task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
-    outputFormat = 'javadoc'
+    outputFormat = 'jekyll'
     outputDirectory = javadoc.destinationDir
     inputs.dir 'src/main/kotlin'
 }
@@ -62,6 +95,13 @@ task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
+
+task copyDocs(type: Copy) {
+    from "$buildDir/docs/javadoc"
+    into 'docs'
+}
+
+copyDocs.shouldRunAfter javadoc
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava

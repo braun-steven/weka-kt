@@ -21,7 +21,9 @@ val Instance.numAttributes: Int
     get() = this.numAttributes()
 
 /**
- * Cannot directly overload [Instance.equals] via extensions as they are statically resolved.
+ * Check if this instance is equal to another instance object.
+ *
+ * @return True if this is equal to [other]
  */
 fun Instance.isEqualTo(other: Any?): Boolean {
     if (other == null) {

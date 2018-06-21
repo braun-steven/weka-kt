@@ -87,7 +87,9 @@ fun <T : Filter> Instances.filter(filter: T, body: T.() -> Unit = {}): Instances
 
 
 /**
- * Cannot directly overload [Instances.equals] via extensions as they are statically resolved.
+ * Check if this instances is equal to another instances object.
+ *
+ * @return True if this is equal to [other]
  */
 fun Instances.isEqualTo(other: Any?): Boolean {
     if (other == null) {

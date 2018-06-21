@@ -81,8 +81,22 @@ repositories {
 
 // Dokka setup
 dokka {
-    outputFormat = 'html'
+    outputFormat = 'gfm'
     outputDirectory = "$buildDir/javadoc"
+
+    externalDocumentationLink {
+        // Root URL of the generated documentation to link with. The trailing slash is required!
+        url = new URL("http://weka.sourceforge.net/doc.stable/")
+    }
+
+    // The list of files or directories containing sample code (referenced with @sample tags)
+    samples = ['src/samples/com/github/slang03/wekakt/extensions/InstanceSamples.kt',
+               'src/samples/com/github/slang03/wekakt/extensions/InstancesSamples.kt',
+               'src/samples/com/github/slang03/wekakt/extensions/AttributeSamples.kt',
+               'src/samples/com/github/slang03/wekakt/extensions/ClassifierSamples.kt',
+               'src/samples/com/github/slang03/wekakt/extensions/ClustererSamples.kt',
+               'src/samples/com/github/slang03/wekakt/extensions/OptionHandlerSamples.kt',
+    ]
 }
 
 task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {

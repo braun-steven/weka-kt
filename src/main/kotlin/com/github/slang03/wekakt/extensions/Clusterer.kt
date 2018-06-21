@@ -9,19 +9,20 @@ import weka.core.Instances
 import weka.filters.Filter
 import java.util.*
 
-/**
+/*
  * Extensions for the Weka [Clusterer] class.
  *
  * @author Steven Lang
  */
 
 /**
- * Wraps this classifier in a [FilteredClassifier] and adds the given [filter] object.
+ * Wraps this classifier in a [FilteredClusterer] and adds the given [filter] object.
  *
- * @param filter Filter to use in the [FilteredClassifier] object
+ * @param filter Filter to use in the [FilteredClusterer] object
  * @param body Body to execute in [filter]
  * @param T Filter class
- * @return [FilteredClassifier] instance
+ * @return [FilteredClusterer] instance
+ * @sample sampleMakeFilteredClusterer
  */
 fun <T : Filter> Clusterer.makeFiltered(filter: T, body: T.() -> Unit): FilteredClusterer {
     val wrapper = FilteredClusterer()
@@ -37,6 +38,7 @@ fun <T : Filter> Clusterer.makeFiltered(filter: T, body: T.() -> Unit): Filtered
  * @param trainData Training data
  * @param testData Testing data
  * @return Clusterer evaluation
+ * @sample sampleClustererEvaluateHoldout
  */
 fun Clusterer.evaluate(trainData: Instances, testData: Instances): ClusterEvaluation {
     if (trainData.classIndex >= 0 && testData.classIndex >= 0 && trainData.classIndex == testData.classIndex){
@@ -55,6 +57,7 @@ fun Clusterer.evaluate(trainData: Instances, testData: Instances): ClusterEvalua
  * @param data Input dataset
  * @param testPercentage Testing data split percentage
  * @return Clusterer evaluation
+ * @sample sampleClustererEvaluateHoldoutTestpercentage
  */
 fun Clusterer.evaluate(data: Instances, testPercentage: Double): ClusterEvaluation {
     val (train, test) = data.split(testPercentage)
@@ -66,6 +69,7 @@ fun Clusterer.evaluate(data: Instances, testPercentage: Double): ClusterEvaluati
  *
  * @param testData Testing data
  * @return Clusterer evaluation
+ * @sample sampleClustererEvaluateTestSet
  */
 fun Clusterer.evaluateTestSet(testData: Instances): ClusterEvaluation {
     val eval = ClusterEvaluation()
@@ -81,6 +85,7 @@ fun Clusterer.evaluateTestSet(testData: Instances): ClusterEvaluation {
  * @param numFolds Number of folds
  * @param seed Seed for random number generator
  * @return Cross validation log-likelihood
+ * @sample sampleClustererCrossValidation
  */
 fun DensityBasedClusterer.crossValidate(data: Instances, numFolds: Int = 10, seed: Long = 1): Double {
     return ClusterEvaluation.crossValidateModel(this, data, numFolds, Random(seed))

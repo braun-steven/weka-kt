@@ -48,9 +48,9 @@ object ClassifierExtensionsSpec : SubjectSpek<Classifier>({
             val predsActual = eval.predictions()
 
             it("should have the same result as normal cross validation") {
-                val eval = Evaluation(iris)
-                eval.crossValidateModel(subject, iris, 10, Random(1))
-                val predsExpected: ArrayList<Prediction> = eval.predictions()
+                val evalExpected = Evaluation(iris)
+                evalExpected.crossValidateModel(subject, iris, 10, Random(1))
+                val predsExpected: ArrayList<Prediction> = evalExpected.predictions()
 
                 assertPredictionsAreEqual(predsExpected, predsActual)
             }

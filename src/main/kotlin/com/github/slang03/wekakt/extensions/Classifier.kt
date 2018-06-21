@@ -7,7 +7,7 @@ import weka.core.Instances
 import weka.filters.Filter
 import java.util.*
 
-/**
+/*
  * Extensions for the Weka [Classifier] class.
  *
  * @author Steven Lang
@@ -20,6 +20,7 @@ import java.util.*
  * @param body Body to execute in [filter]
  * @param T Filter class
  * @return [FilteredClassifier] instance
+ * @sample sampleMakeFilteredClassifier
  */
 fun <T : Filter> Classifier.makeFiltered(filter: T, body: T.() -> Unit): FilteredClassifier {
     val wrapper = FilteredClassifier()
@@ -35,6 +36,7 @@ fun <T : Filter> Classifier.makeFiltered(filter: T, body: T.() -> Unit): Filtere
  * @param trainData Training data
  * @param testData Testing data
  * @return Evaluation object containing predictions and statistics
+ * @sample sampleClassifierEvaluateHoldoutTrainTest
  */
 fun Classifier.evaluateHoldout(trainData: Instances, testData: Instances): Evaluation {
     // Build on train data
@@ -52,6 +54,7 @@ fun Classifier.evaluateHoldout(trainData: Instances, testData: Instances): Evalu
  * @param data Input dataset
  * @param testPercentage Testing data split percentage
  * @return Evaluation object containing predictions and statistics
+ * @sample sampleClassifierEvaluateHoldoutTestpercentage
  */
 fun Classifier.evaluateHoldout(data: Instances, testPercentage: Double): Evaluation {
     // Split dataset
@@ -67,6 +70,7 @@ fun Classifier.evaluateHoldout(data: Instances, testPercentage: Double): Evaluat
  * @param numFolds Number of cross validation folds
  * @param seed Seed for picking random datapoints for train/test sets
  * @return Evaluation object containing predictions and statistics
+ * @sample sampleClassifierCrossValidation
  */
 fun Classifier.evaluateCrossValidation(data: Instances, numFolds: Int = 10, seed: Long = 1): Evaluation {
     val eval = Evaluation(data)

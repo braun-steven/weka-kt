@@ -6,6 +6,7 @@ import weka.core.Instances
 import weka.core.WekaException
 import weka.core.converters.ArffLoader
 import weka.core.converters.CSVLoader
+import weka.core.converters.ConverterUtils
 import weka.core.converters.Loader
 import weka.filters.Filter
 import weka.filters.unsupervised.attribute.Remove
@@ -13,56 +14,120 @@ import weka.filters.unsupervised.instance.RemovePercentage
 import weka.filters.unsupervised.instance.RemoveRange
 import java.io.File
 
-/**
+/*
  * Extensions for the Weka [weka.core.Instances] class.
  *
  * @author Steven Lang
  */
 
-operator fun Instances.get(i: Int): Instance = this.instance(i)
+/**
+ * Get the instance at index [rowIndex].
+ * @param [rowIndex] Row index
+ * @return Instance at [rowIndex]
+ * @sample sampleGetInstanceByIndex
+ */
+operator fun Instances.get(rowIndex: Int): Instance = this.instance(rowIndex)
 
-operator fun Instances.get(i: Int, attributeIndex: Int) = this[i][attributeIndex]
-operator fun Instances.get(i: Int, attribute: Attribute) = this[i][attribute]
+/**
+ * Get the value at position ([rowIndex],[attributeIndex]).
+ *
+ * @param [rowIndex] Row index
+ * @param [attributeIndex] Attribute index
+ * @return Value at position ([rowIndex],[attributeIndex])
+ * @sample sampleGetValueAtRowAndAttributeIndex
+ */
+operator fun Instances.get(rowIndex: Int, attributeIndex: Int) = this[rowIndex][attributeIndex]
 
-operator fun Instances.set(i: Int, instance: Instance): Instance = this.set(i, instance)
-operator fun Instances.set(i: Int, attributeIndex: Int, value: Number) = this[i].set(attributeIndex, value)
-operator fun Instances.set(i: Int, attribute: Attribute, value: Number) = this[i].set(attribute, value)
-operator fun Instances.set(i: Int, attributeIndex: Int, value: String) = this[i].set(attributeIndex, value)
-operator fun Instances.set(i: Int, attribute: Attribute, value: String) = this[i].set(attribute, value)
+/**
+ * Get the value at position ([rowIndex],[attribute]).
+ *
+ * @param [rowIndex] Row index
+ * @param [attribute] Attribute
+ * @return Value at position ([rowIndex],[attribute])
+ * @sample sampleGetValueAtRowIndexAndAttribute
+ */
+operator fun Instances.get(rowIndex: Int, attribute: Attribute) = this[rowIndex][attribute]
 
+/**
+ * Set the instance at position [rowIndex]
+ *
+ * @param [rowIndex] Row index
+ * @param [instance] Row instance
+ * @sample sampleSetInstanceByRowIndex
+ */
+operator fun Instances.set(rowIndex: Int, instance: Instance): Instance = this.set(rowIndex, instance)
 
+/**
+ * Set the value at position ([rowIndex],[attributeIndex]).
+ *
+ * @param [rowIndex] Row index
+ * @param [attributeIndex] Attribute index
+ * @param [value] Value
+ * @sample sampleSetValueAtRowIndexAndAttributeIndex
+ */
+operator fun Instances.set(rowIndex: Int, attributeIndex: Int, value: Number) = this[rowIndex].set(attributeIndex, value)
+
+/**
+ * Set the value at position ([rowIndex],[attribute]).
+ *
+ * @param [rowIndex] Row index
+ * @param [attribute] Attribute
+ * @param [value] Value
+ * @sample sampleSetValueAtRowIndexAndAttribute
+ */
+operator fun Instances.set(rowIndex: Int, attribute: Attribute, value: Number) = this[rowIndex].set(attribute, value)
+
+/**
+ * Set string value at position ([rowIndex],[attributeIndex]).
+ *
+ * @param [rowIndex] Row index
+ * @param [attributeIndex] Attribute index
+ * @param [value] Value
+ * @sample sampleSetStringValueAtRowIndexAndAttributeIndex
+ */
+operator fun Instances.set(rowIndex: Int, attributeIndex: Int, value: String) = this[rowIndex].set(attributeIndex, value)
+
+/**
+ * Set string value at position ([rowIndex],[attribute]).
+ *
+ * @param [rowIndex] Row index
+ * @param [attribute] Attribute
+ * @param [value] Value
+ * @sample sampleSetStringValueAtRowIndexAndAttribute
+ */
+operator fun Instances.set(rowIndex: Int, attribute: Attribute, value: String) = this[rowIndex].set(attribute, value)
+
+/**
+ * Class index.
+ */
 var Instances.classIndex: Int
     get() = this.classIndex()
     set(value) = this.setClassIndex(value)
 
+
+/**
+ * Number of attributes.
+ */
 val Instances.numAttributes: Int
     get() = this.numAttributes()
 
+/**
+ * List of attributes.
+ */
 val Instances.attributes: List<Attribute>
     get() = this.enumerateAttributes().toList()
 
 /**
- * Create a new Instances object based on a given filepath
+ * Create a new Instances object based on a given filepath.
  * Imitates constructor extension via function.
  *
  * @param filePath Path to the dataset file
  * @param classIndex The class index of the dataset
  * @return A new Instances object, loaded from the given file path
+ * @sample sampleInstancesConstructorWithFilePath
  */
 fun Instances(filePath: String, classIndex: Int = -1): Instances {
-    val loader: Loader
-
-    // Use loader depending on file-ending
-    if (filePath.endsWith(".csv")) {
-        loader = CSVLoader()
-    } else {
-        // Try ArffLoader as default
-        loader = ArffLoader()
-    }
-
-    // Load the dataset
-    loader.setSource(File(filePath))
-    val dataSet = loader.dataSet
+    val dataSet = ConverterUtils.DataSource.read(filePath)
 
     // Set class index
     if (classIndex >= 0) {
@@ -78,6 +143,7 @@ fun Instances(filePath: String, classIndex: Int = -1): Instances {
  * @param filter Filter instance
  * @param body Filter function body
  * @param T inheriting from [Filter]
+ * @sample sampleApplyFilterOnData
  */
 fun <T : Filter> Instances.filter(filter: T, body: T.() -> Unit = {}): Instances {
     filter.body()
@@ -113,9 +179,10 @@ fun Instances.isEqualTo(other: Any?): Boolean {
 }
 
 /**
- * Split this dataset into two separate sets with a given splitpercentage.
+ * Split this dataset into two separate sets with a given [testPercentage].
  *
  * @param testPercentage Test split percentage.
+ * @sample sampleSplitData
  */
 fun Instances.split(testPercentage: Double): Pair<Instances, Instances> {
     // Define filter according to the given split percentage
@@ -133,6 +200,7 @@ fun Instances.split(testPercentage: Double): Pair<Instances, Instances> {
  *
  * @param range Range of ints indicating the slice interval
  * @return Subset of this dataset, that is only the attributes in the given range are in the result
+ * @sample sampleSliceAttributesRange
  */
 fun Instances.sliceAttributes(range: IntRange): Instances {
     return this.filter(Remove()) {
@@ -148,6 +216,7 @@ fun Instances.sliceAttributes(range: IntRange): Instances {
  *
  * @param range Range of ints indicating the slice interval
  * @return Subset of this dataset, that is only the rows in the given range are in the result
+ * @sample sampleSliceRowsRange
  */
 fun Instances.sliceRows(range: IntRange): Instances {
     return this.filter(RemoveRange()) {
@@ -163,6 +232,7 @@ fun Instances.sliceRows(range: IntRange): Instances {
  * @param rangeAttributes Range of ints indicating the attribute slice interval
  * @return Subset of this dataset, that is only the attributes and rows in the given ranges are in
  * the result
+ * @sample sampleSliceRowsandAttributesRange
  */
 fun Instances.slice(rangeRows: IntRange, rangeAttributes: IntRange): Instances {
     return this.sliceRows(rangeRows).sliceAttributes(rangeAttributes)
@@ -173,6 +243,7 @@ fun Instances.slice(rangeRows: IntRange, rangeAttributes: IntRange): Instances {
  *
  * @param indices List of indices to return the rows of
  * @return Subset of this dataset containing only the rows specified in [indices]
+ * @sample sampleSliceRowsIndices
  */
 fun Instances.sliceRows(vararg indices: Int): Instances {
     return this.filter(RemoveRange()) {
@@ -187,6 +258,7 @@ fun Instances.sliceRows(vararg indices: Int): Instances {
  *
  * @param indices List of indices to return the attributes of
  * @return Subset of this dataset containing only the attributes specified in [indices]
+ * @sample sampleSliceAttributeIndices
  */
 fun Instances.sliceAttributes(vararg indices: Int): Instances {
     return this.filter(Remove()) {
@@ -204,6 +276,7 @@ fun Instances.sliceAttributes(vararg indices: Int): Instances {
  * @return Subset of this dataset, that is only the attributes and rows in the given ranges are in
  * the result
  * @see [Instances.slice]
+ * @sample sampleGetRowAndAttributeIndexRange
  */
 operator fun Instances.get(rangeRows: IntRange, rangeAttributes: IntRange): Instances {
     return slice(rangeRows, rangeAttributes)
@@ -213,6 +286,7 @@ operator fun Instances.get(rangeRows: IntRange, rangeAttributes: IntRange): Inst
  * Remove a given attribute by index.
  * @param attIndex Attribute index
  * @return This data without the specified attribute
+ * @sample sampleRemoveAttribute
  */
 fun Instances.removeAttribute(attIndex: Int): Instances {
     return filter(Remove()) {
@@ -223,6 +297,7 @@ fun Instances.removeAttribute(attIndex: Int): Instances {
 /**
  * Remove the class attribute of this dataset.
  * @return This data without the class attribute
+ * @sample sampleRemoveClassAttribute
  */
 fun Instances.removeClassAttribute(): Instances {
     if (this.classIndex >= 0) {

@@ -1,0 +1,44 @@
+$dokka.format:gfm
+$dokka.linkExtension:md
+$dokka.location:com.github.stevenlang.wekakt.extensions$attributes#weka.core.Instancescom.github.stevenlang.wekakt.extensions/weka.core.-instances/attributes.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$classIndex#weka.core.Instancescom.github.stevenlang.wekakt.extensions/weka.core.-instances/class-index.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$crossValidate(weka.clusterers.DensityBasedClusterer, weka.core.Instances, kotlin.Int, kotlin.Long)com.github.stevenlang.wekakt.extensions/weka.clusterers.-density-based-clusterer/cross-validate.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$evaluate(weka.clusterers.Clusterer, weka.core.Instances, kotlin.Double)com.github.stevenlang.wekakt.extensions/weka.clusterers.-clusterer/evaluate.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$evaluate(weka.clusterers.Clusterer, weka.core.Instances, weka.core.Instances)com.github.stevenlang.wekakt.extensions/weka.clusterers.-clusterer/evaluate.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$evaluateCrossValidation(weka.classifiers.Classifier, weka.core.Instances, kotlin.Int, kotlin.Long)com.github.stevenlang.wekakt.extensions/weka.classifiers.-classifier/evaluate-cross-validation.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$evaluateHoldout(weka.classifiers.Classifier, weka.core.Instances, kotlin.Double)com.github.stevenlang.wekakt.extensions/weka.classifiers.-classifier/evaluate-holdout.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$evaluateHoldout(weka.classifiers.Classifier, weka.core.Instances, weka.core.Instances)com.github.stevenlang.wekakt.extensions/weka.classifiers.-classifier/evaluate-holdout.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$evaluateTestSet(weka.clusterers.Clusterer, weka.core.Instances)com.github.stevenlang.wekakt.extensions/weka.clusterers.-clusterer/evaluate-test-set.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$filter(weka.core.Instances, com.github.stevenlang.wekakt.extensions.filter.T, kotlin.Function1((com.github.stevenlang.wekakt.extensions.filter.T, kotlin.Unit)))com.github.stevenlang.wekakt.extensions/weka.core.-instances/filter.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$get(weka.core.Instance, kotlin.Int)com.github.stevenlang.wekakt.extensions/weka.core.-instance/get.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$get(weka.core.Instance, weka.core.Attribute)com.github.stevenlang.wekakt.extensions/weka.core.-instance/get.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$get(weka.core.Instances, kotlin.Int)com.github.stevenlang.wekakt.extensions/weka.core.-instances/get.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$get(weka.core.Instances, kotlin.Int, kotlin.Int)com.github.stevenlang.wekakt.extensions/weka.core.-instances/get.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$get(weka.core.Instances, kotlin.Int, weka.core.Attribute)com.github.stevenlang.wekakt.extensions/weka.core.-instances/get.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$get(weka.core.Instances, kotlin.ranges.IntRange, kotlin.ranges.IntRange)com.github.stevenlang.wekakt.extensions/weka.core.-instances/get.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$isEqualTo(weka.core.Instance, kotlin.Any)com.github.stevenlang.wekakt.extensions/weka.core.-instance/is-equal-to.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$isEqualTo(weka.core.Instances, kotlin.Any)com.github.stevenlang.wekakt.extensions/weka.core.-instances/is-equal-to.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$makeFiltered(weka.classifiers.Classifier, com.github.stevenlang.wekakt.extensions.makeFiltered.T, kotlin.Function1((com.github.stevenlang.wekakt.extensions.makeFiltered.T, kotlin.Unit)))com.github.stevenlang.wekakt.extensions/weka.classifiers.-classifier/make-filtered.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$makeFiltered(weka.clusterers.Clusterer, com.github.stevenlang.wekakt.extensions.makeFiltered.T, kotlin.Function1((com.github.stevenlang.wekakt.extensions.makeFiltered.T, kotlin.Unit)))com.github.stevenlang.wekakt.extensions/weka.clusterers.-clusterer/make-filtered.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$numAttributes#weka.core.Instancecom.github.stevenlang.wekakt.extensions/weka.core.-instance/num-attributes.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$numAttributes#weka.core.Instancescom.github.stevenlang.wekakt.extensions/weka.core.-instances/num-attributes.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$removeAttribute(weka.core.Instances, kotlin.Int)com.github.stevenlang.wekakt.extensions/weka.core.-instances/remove-attribute.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$removeClassAttribute(weka.core.Instances)com.github.stevenlang.wekakt.extensions/weka.core.-instances/remove-class-attribute.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$set(weka.core.Instance, kotlin.Int, kotlin.Number)com.github.stevenlang.wekakt.extensions/weka.core.-instance/set.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$set(weka.core.Instance, kotlin.Int, kotlin.String)com.github.stevenlang.wekakt.extensions/weka.core.-instance/set.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$set(weka.core.Instance, weka.core.Attribute, kotlin.Number)com.github.stevenlang.wekakt.extensions/weka.core.-instance/set.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$set(weka.core.Instance, weka.core.Attribute, kotlin.String)com.github.stevenlang.wekakt.extensions/weka.core.-instance/set.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$set(weka.core.Instances, kotlin.Int, kotlin.Int, kotlin.Number)com.github.stevenlang.wekakt.extensions/weka.core.-instances/set.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$set(weka.core.Instances, kotlin.Int, kotlin.Int, kotlin.String)com.github.stevenlang.wekakt.extensions/weka.core.-instances/set.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$set(weka.core.Instances, kotlin.Int, weka.core.Attribute, kotlin.Number)com.github.stevenlang.wekakt.extensions/weka.core.-instances/set.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$set(weka.core.Instances, kotlin.Int, weka.core.Attribute, kotlin.String)com.github.stevenlang.wekakt.extensions/weka.core.-instances/set.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$set(weka.core.Instances, kotlin.Int, weka.core.Instance)com.github.stevenlang.wekakt.extensions/weka.core.-instances/set.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$setOptions(weka.core.OptionHandler, kotlin.String)com.github.stevenlang.wekakt.extensions/weka.core.-option-handler/set-options.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$slice(weka.core.Instances, kotlin.ranges.IntRange, kotlin.ranges.IntRange)com.github.stevenlang.wekakt.extensions/weka.core.-instances/slice.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$sliceAttributes(weka.core.Instances, kotlin.IntArray)com.github.stevenlang.wekakt.extensions/weka.core.-instances/slice-attributes.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$sliceAttributes(weka.core.Instances, kotlin.ranges.IntRange)com.github.stevenlang.wekakt.extensions/weka.core.-instances/slice-attributes.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$sliceRows(weka.core.Instances, kotlin.IntArray)com.github.stevenlang.wekakt.extensions/weka.core.-instances/slice-rows.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$sliceRows(weka.core.Instances, kotlin.ranges.IntRange)com.github.stevenlang.wekakt.extensions/weka.core.-instances/slice-rows.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$split(weka.core.Instances, kotlin.Double)com.github.stevenlang.wekakt.extensions/weka.core.-instances/split.md
+$dokka.location:com.github.stevenlang.wekakt.extensions$weight#weka.core.Attributecom.github.stevenlang.wekakt.extensions/weka.core.-attribute/weight.md
+com.github.stevenlang.wekakt.extensions

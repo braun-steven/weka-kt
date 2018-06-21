@@ -90,12 +90,12 @@ dokka {
     }
 
     // The list of files or directories containing sample code (referenced with @sample tags)
-    samples = ['src/samples/kotlin/com/github/steven-lang/wekakt/extensions/InstanceSamples.kt',
-               'src/samples/kotlin/com/github/steven-lang/wekakt/extensions/InstancesSamples.kt',
-               'src/samples/kotlin/com/github/steven-lang/wekakt/extensions/AttributeSamples.kt',
-               'src/samples/kotlin/com/github/steven-lang/wekakt/extensions/ClassifierSamples.kt',
-               'src/samples/kotlin/com/github/steven-lang/wekakt/extensions/ClustererSamples.kt',
-               'src/samples/kotlin/com/github/steven-lang/wekakt/extensions/OptionHandlerSamples.kt',
+    samples = ['src/samples/kotlin/com/github/stevenlang/wekakt/extensions/InstanceSamples.kt',
+               'src/samples/kotlin/com/github/stevenlang/wekakt/extensions/InstancesSamples.kt',
+               'src/samples/kotlin/com/github/stevenlang/wekakt/extensions/AttributeSamples.kt',
+               'src/samples/kotlin/com/github/stevenlang/wekakt/extensions/ClassifierSamples.kt',
+               'src/samples/kotlin/com/github/stevenlang/wekakt/extensions/ClustererSamples.kt',
+               'src/samples/kotlin/com/github/stevenlang/wekakt/extensions/OptionHandlerSamples.kt',
     ]
 }
 

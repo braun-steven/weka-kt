@@ -82,7 +82,7 @@ repositories {
 // Dokka setup
 dokka {
     outputFormat = 'gfm'
-    outputDirectory = "$buildDir/javadoc"
+    outputDirectory = "$buildDir/$outputFormat/javadoc"
 
     externalDocumentationLink {
         // Root URL of the generated documentation to link with. The trailing slash is required!
@@ -90,33 +90,42 @@ dokka {
     }
 
     // The list of files or directories containing sample code (referenced with @sample tags)
-    samples = ['src/samples/com/github/slang03/wekakt/extensions/InstanceSamples.kt',
-               'src/samples/com/github/slang03/wekakt/extensions/InstancesSamples.kt',
-               'src/samples/com/github/slang03/wekakt/extensions/AttributeSamples.kt',
-               'src/samples/com/github/slang03/wekakt/extensions/ClassifierSamples.kt',
-               'src/samples/com/github/slang03/wekakt/extensions/ClustererSamples.kt',
-               'src/samples/com/github/slang03/wekakt/extensions/OptionHandlerSamples.kt',
+    samples = ['src/samples/kotlin/com/github/steven-lang/wekakt/extensions/InstanceSamples.kt',
+               'src/samples/kotlin/com/github/steven-lang/wekakt/extensions/InstancesSamples.kt',
+               'src/samples/kotlin/com/github/steven-lang/wekakt/extensions/AttributeSamples.kt',
+               'src/samples/kotlin/com/github/steven-lang/wekakt/extensions/ClassifierSamples.kt',
+               'src/samples/kotlin/com/github/steven-lang/wekakt/extensions/ClustererSamples.kt',
+               'src/samples/kotlin/com/github/steven-lang/wekakt/extensions/OptionHandlerSamples.kt',
     ]
 }
 
 task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
-    outputFormat = 'jekyll'
+    outputFormat = 'javadoc'
     outputDirectory = javadoc.destinationDir
     inputs.dir 'src/main/kotlin'
 }
 
+// Create javadoc jar
 task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
 
-task copyDocs(type: Copy) {
-    from "$buildDir/docs/javadoc"
-    into 'docs'
+//task copyDocs(type: Copy) {
+//    from "$buildDir/docs/javadoc"
+//    into 'docs'
+//}
+//
+//copyDocs.shouldRunAfter javadoc
+
+// Fix dokka issue (https://github.com/Kotlin/dokka/issues/185)
+task callFixDocsScript(type: Exec) {
+    commandLine './fix-docs.sh'
 }
+// Run fix after dokka task
+dokka.finalizedBy callFixDocsScript
 
-copyDocs.shouldRunAfter javadoc
-
+// Create source jar file
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
     classifier "sources"
@@ -130,14 +139,14 @@ publishing {
             artifact sourceJar
             artifact javadocJar
 
-            groupId 'com.github.slang03'
+            groupId 'com.github.steven-lang'
             artifactId 'weka-kt'
             version project.version.replace("-SNAPSHOT","")
 
             pom {
                 name = "weka-kt"
                 description = "Kotlin Extensions for Weka."
-                url = "http://www.github.com/slang03/weka-kt"
+                url = "http://www.github.com/steven-lang/weka-kt"
                 licenses {
                     license {
                         name = "GNU General Public License 3"
@@ -146,15 +155,15 @@ publishing {
                 }
                 developers {
                     developer {
-                        id = "slang03"
+                        id = "steven-lang"
                         name = "Steven Lang"
                         email = "steven.lang.mz@gmail.com"
                     }
                 }
                 scm {
-                    connection = "scm:git:https://github.com/slang03/weka-kt"
-                    developerConnection = "scm:git:https://github.com/slang03/weka-kt"
-                    url = "https://github.com/slang03/weka-kt"
+                    connection = "scm:git:https://github.com/steven-lang/weka-kt"
+                    developerConnection = "scm:git:https://github.com/steven-lang/weka-kt"
+                    url = "https://github.com/steven-lang/weka-kt"
                 }
             }
         }

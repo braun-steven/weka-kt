@@ -1,4 +1,4 @@
-package com.github.slang03.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions
 
 import weka.core.Attribute
 import weka.core.Instance
@@ -22,6 +22,7 @@ import java.io.File
 
 /**
  * Get the instance at index [rowIndex].
+ *
  * @param [rowIndex] Row index
  * @return Instance at [rowIndex]
  * @sample sampleGetInstanceByIndex
@@ -49,7 +50,7 @@ operator fun Instances.get(rowIndex: Int, attributeIndex: Int) = this[rowIndex][
 operator fun Instances.get(rowIndex: Int, attribute: Attribute) = this[rowIndex][attribute]
 
 /**
- * Set the instance at position [rowIndex]
+ * Set the instance at position [rowIndex].
  *
  * @param [rowIndex] Row index
  * @param [instance] Row instance
@@ -284,6 +285,7 @@ operator fun Instances.get(rangeRows: IntRange, rangeAttributes: IntRange): Inst
 
 /**
  * Remove a given attribute by index.
+ *
  * @param attIndex Attribute index
  * @return This data without the specified attribute
  * @sample sampleRemoveAttribute

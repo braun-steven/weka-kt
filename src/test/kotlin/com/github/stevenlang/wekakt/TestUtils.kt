@@ -1,6 +1,6 @@
-package com.github.slang03.wekakt
+package com.github.stevenlang.wekakt
 
-import com.github.slang03.wekakt.extensions.Instances
+import com.github.stevenlang.wekakt.extensions.Instances
 import weka.classifiers.evaluation.Prediction
 import java.util.ArrayList
 

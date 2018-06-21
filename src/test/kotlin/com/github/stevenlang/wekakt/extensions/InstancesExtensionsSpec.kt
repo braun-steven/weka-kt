@@ -1,7 +1,7 @@
-package com.github.slang03.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions
 
-import com.github.slang03.wekakt.getIris
-import com.github.slang03.wekakt.shouldEqualTo
+import com.github.stevenlang.wekakt.getIris
+import com.github.stevenlang.wekakt.shouldEqualTo
 import org.jetbrains.spek.api.dsl.given
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on

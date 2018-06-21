@@ -1,4 +1,4 @@
-package com.github.slang03.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions
 
 private fun sampleGetInstanceByIndex() {
     val iris: Instances = getIris()

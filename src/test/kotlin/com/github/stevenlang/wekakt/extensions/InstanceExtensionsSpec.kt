@@ -1,7 +1,6 @@
-package com.github.slang03.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions
 
-import com.github.slang03.wekakt.extensions.*
-import com.github.slang03.wekakt.getIris
+import com.github.stevenlang.wekakt.getIris
 import org.amshove.kluent.shouldEqualTo
 import org.jetbrains.spek.api.dsl.given
 import org.jetbrains.spek.api.dsl.it

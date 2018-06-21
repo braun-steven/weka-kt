@@ -1,8 +1,8 @@
-package com.github.slang03.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions
 
-import com.github.slang03.wekakt.extensions.Instances
-import com.github.slang03.wekakt.extensions.attributes
-import com.github.slang03.wekakt.extensions.get
+import com.github.stevenlang.wekakt.extensions.Instances
+import com.github.stevenlang.wekakt.extensions.attributes
+import com.github.stevenlang.wekakt.extensions.get
 import weka.core.Attribute
 import weka.core.Instance
 import weka.core.Instances

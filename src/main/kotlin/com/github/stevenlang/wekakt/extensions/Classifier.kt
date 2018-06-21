@@ -1,4 +1,4 @@
-package com.github.slang03.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions
 
 import weka.classifiers.Classifier
 import weka.classifiers.Evaluation

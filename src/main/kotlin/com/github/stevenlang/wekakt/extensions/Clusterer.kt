@@ -1,4 +1,4 @@
-package com.github.slang03.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions
 
 import weka.classifiers.meta.FilteredClassifier
 import weka.clusterers.ClusterEvaluation

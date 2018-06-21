@@ -19,13 +19,13 @@ To add Weka-Kt to your project, add the following dependency to your dependency 
 <dependency>
     <groupId>com.github.slang03</groupId>
     <artifactId>weka-kt</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
 </dependency>
 ```
 
 **Gradle**
 ```
-compile 'com.github.slang03:weka-kt:0.0.4'
+compile 'com.github.slang03:weka-kt:0.0.5'
 ```
 ___
 

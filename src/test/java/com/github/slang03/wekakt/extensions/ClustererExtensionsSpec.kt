@@ -27,13 +27,13 @@ object ClustererExtensionsSpec : SubjectSpek<Clusterer>({
 
     given("EM clusterer, iris data and 33% split percentage") {
         val testPercentage = 33.0
-        var iris = getIris()
+        val iris = getIris().removeClassAttribute()
 
         on("holdout cluster evaluation with and without extension") {
-            // Call
             val (train, test) = iris.split(testPercentage)
             val clEval = subject.evaluate(trainData = train, testData = test)
 
+            // Create expected results by directly calling the Weka methods
             val otherClusterer = EM()
             val clEvalExpected = ClusterEvaluation()
             otherClusterer.buildClusterer(train)
@@ -42,7 +42,6 @@ object ClustererExtensionsSpec : SubjectSpek<Clusterer>({
 
             it("should generate the same cluster evaluation") {
                 clEval.numClusters `shouldEqualTo` clEvalExpected.numClusters
-                clEval.classesToClusters `shouldEqual` clEvalExpected.classesToClusters
                 (clEval.logLikelihood - clEvalExpected.logLikelihood).absoluteValue `shouldBeLessThan` DOUBLE_EQ_PRECISION
             }
         }

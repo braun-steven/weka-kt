@@ -7,7 +7,11 @@
 Cross validate this density based clusterer on the given data.
 
 ``` kotlin
-//Unresolved: sampleClustererCrossValidation
+val em: Clusterer = EM()
+val iris: Instances = getIris()
+
+// Evaluate cross-validation
+val eval: ClustererEvaluation = j48.crossValidate(data = iris, numFolds = 10, seed = 1)
 ```
 
 ### Parameters

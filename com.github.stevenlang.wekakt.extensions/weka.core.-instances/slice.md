@@ -7,7 +7,10 @@
 Slice the given range of attributes out of the dataset.
 
 ``` kotlin
-//Unresolved: sampleSliceRowsandAttributesRange
+val iris: Instances = getIris()
+
+// Get rows from 5 to 50 and attributes from 2 to 3
+val sliced: Instances = iris.slice(5..50, 2..3)
 ```
 
 ### Parameters

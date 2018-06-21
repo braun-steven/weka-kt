@@ -7,7 +7,10 @@
 Split this dataset into two separate sets with a given [testPercentage](split.md#com.github.stevenlang.wekakt.extensions$split(weka.core.Instances, kotlin.Double)/testPercentage).
 
 ``` kotlin
-//Unresolved: sampleSplitData
+val iris: Instances = getIris()
+
+// Split
+val (train, test) = iris.split(testPercentage = 33.0)
 ```
 
 ### Parameters

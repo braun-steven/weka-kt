@@ -7,7 +7,10 @@
 Slice the given range of rows out of the dataset.
 
 ``` kotlin
-//Unresolved: sampleSliceRowsRange
+val iris: Instances = getIris()
+
+// Get rows in the interval [2..3]
+val sliceRows: Instances = iris.sliceRows(2..3)
 ```
 
 ### Parameters
@@ -22,7 +25,10 @@ Subset of this dataset, that is only the rows in the given range are in the resu
 Get the subset of rows with the given indices.
 
 ``` kotlin
-//Unresolved: sampleSliceRowsIndices
+val iris: Instances = getIris()
+
+// Get rows 2, 5 and 8
+val sliceRows: Instances = iris.sliceRows(2, 5, 8)
 ```
 
 ### Parameters

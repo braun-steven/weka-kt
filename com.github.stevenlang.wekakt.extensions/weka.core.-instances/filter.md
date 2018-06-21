@@ -7,7 +7,14 @@
 Apply a given filter to this set of instances.
 
 ``` kotlin
-//Unresolved: sampleApplyFilterOnData
+// Get data
+val iris: Instances = getIris()
+
+// Filter percentage
+irisFiltered = iris.filter(RemovePercentage()) {
+    percentage = 20.0
+    invertSelection = true
+}
 ```
 
 ### Parameters

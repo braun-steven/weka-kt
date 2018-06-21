@@ -7,7 +7,8 @@
 Get the instance at index [rowIndex](get.md#com.github.stevenlang.wekakt.extensions$get(weka.core.Instances, kotlin.Int)/rowIndex).
 
 ``` kotlin
-//Unresolved: sampleGetInstanceByIndex
+val iris: Instances = getIris()
+val row: Instance = iris[4]
 ```
 
 ### Parameters
@@ -22,7 +23,8 @@ Instance at [rowIndex](get.md#com.github.stevenlang.wekakt.extensions$get(weka.c
 Get the value at position ([rowIndex](get.md#com.github.stevenlang.wekakt.extensions$get(weka.core.Instances, kotlin.Int, kotlin.Int)/rowIndex),[attributeIndex](get.md#com.github.stevenlang.wekakt.extensions$get(weka.core.Instances, kotlin.Int, kotlin.Int)/attributeIndex)).
 
 ``` kotlin
-//Unresolved: sampleGetValueAtRowAndAttributeIndex
+val iris: Instances = getIris()
+val value: Double = iris[4, 0]
 ```
 
 ### Parameters
@@ -39,7 +41,9 @@ Value at position ([rowIndex](get.md#com.github.stevenlang.wekakt.extensions$get
 Get the value at position ([rowIndex](get.md#com.github.stevenlang.wekakt.extensions$get(weka.core.Instances, kotlin.Int, weka.core.Attribute)/rowIndex),[attribute](get.md#com.github.stevenlang.wekakt.extensions$get(weka.core.Instances, kotlin.Int, weka.core.Attribute)/attribute)).
 
 ``` kotlin
-//Unresolved: sampleGetValueAtRowIndexAndAttribute
+val iris: Instances = getIris()
+val att: Attribute = iris.attributes[0]
+val value: Double = iris[4, att]
 ```
 
 ### Parameters
@@ -56,7 +60,10 @@ Value at position ([rowIndex](get.md#com.github.stevenlang.wekakt.extensions$get
 Slice the given range of attributes out of the dataset.
 
 ``` kotlin
-//Unresolved: sampleGetRowAndAttributeIndexRange
+val iris: Instances = getIris()
+
+// Get rows from 5 to 50 and attributes from 2 to 3
+val irisReduces: Instances = iris[5..50, 2..3]
 ```
 
 ### Parameters

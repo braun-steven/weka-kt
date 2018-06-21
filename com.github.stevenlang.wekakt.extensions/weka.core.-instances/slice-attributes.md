@@ -7,7 +7,10 @@
 Slice the given range of attributes out of the dataset.
 
 ``` kotlin
-//Unresolved: sampleSliceAttributesRange
+val iris: Instances = getIris()
+
+// Get attributes in the interval [2..3]
+val sliceAtts: Instances = iris.sliceAttributes(2..3)
 ```
 
 ### Parameters
@@ -22,7 +25,10 @@ Subset of this dataset, that is only the attributes in the given range are in th
 Get the subset of attributes with the given indices.
 
 ``` kotlin
-//Unresolved: sampleSliceAttributeIndices
+val iris: Instances = getIris()
+
+// Get attributes 0, 1 and 3
+val sliceAttributes: Instances = iris.sliceAttributes(0, 1, 3)
 ```
 
 ### Parameters

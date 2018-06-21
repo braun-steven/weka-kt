@@ -7,7 +7,10 @@
 Remove the class attribute of this dataset.
 
 ``` kotlin
-//Unresolved: sampleRemoveClassAttribute
+val iris: Instances = getIris()
+
+// Remove the class attribute
+val irisWithoutClass: Instances = iris.removeClassAttribute()
 ```
 
 **Return**

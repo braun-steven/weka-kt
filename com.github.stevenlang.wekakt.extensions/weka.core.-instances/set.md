@@ -7,7 +7,9 @@
 Set the instance at position [rowIndex](set.md#com.github.stevenlang.wekakt.extensions$set(weka.core.Instances, kotlin.Int, weka.core.Instance)/rowIndex).
 
 ``` kotlin
-//Unresolved: sampleSetInstanceByRowIndex
+val iris: Instances = getIris()
+val row: Instance = iris[4]
+iris[5] = row
 ```
 
 ### Parameters
@@ -19,7 +21,8 @@ Set the instance at position [rowIndex](set.md#com.github.stevenlang.wekakt.exte
 Set the value at position ([rowIndex](set.md#com.github.stevenlang.wekakt.extensions$set(weka.core.Instances, kotlin.Int, kotlin.Int, kotlin.Number)/rowIndex),[attributeIndex](set.md#com.github.stevenlang.wekakt.extensions$set(weka.core.Instances, kotlin.Int, kotlin.Int, kotlin.Number)/attributeIndex)).
 
 ``` kotlin
-//Unresolved: sampleSetValueAtRowIndexAndAttributeIndex
+val iris: Instances = getIris()
+iris[4, 0] = 12.0
 ```
 
 ### Parameters
@@ -33,7 +36,9 @@ Set the value at position ([rowIndex](set.md#com.github.stevenlang.wekakt.extens
 Set the value at position ([rowIndex](set.md#com.github.stevenlang.wekakt.extensions$set(weka.core.Instances, kotlin.Int, weka.core.Attribute, kotlin.Number)/rowIndex),[attribute](set.md#com.github.stevenlang.wekakt.extensions$set(weka.core.Instances, kotlin.Int, weka.core.Attribute, kotlin.Number)/attribute)).
 
 ``` kotlin
-//Unresolved: sampleSetValueAtRowIndexAndAttribute
+val iris: Instances = getIris()
+val att: Attribute = iris.attributes[0]
+iris[4, att] = 12.0
 ```
 
 ### Parameters
@@ -47,7 +52,8 @@ Set the value at position ([rowIndex](set.md#com.github.stevenlang.wekakt.extens
 Set string value at position ([rowIndex](set.md#com.github.stevenlang.wekakt.extensions$set(weka.core.Instances, kotlin.Int, kotlin.Int, kotlin.String)/rowIndex),[attributeIndex](set.md#com.github.stevenlang.wekakt.extensions$set(weka.core.Instances, kotlin.Int, kotlin.Int, kotlin.String)/attributeIndex)).
 
 ``` kotlin
-//Unresolved: sampleSetStringValueAtRowIndexAndAttributeIndex
+val data: Instances = getData()
+data[4, 0] = "car"
 ```
 
 ### Parameters
@@ -61,7 +67,9 @@ Set string value at position ([rowIndex](set.md#com.github.stevenlang.wekakt.ext
 Set string value at position ([rowIndex](set.md#com.github.stevenlang.wekakt.extensions$set(weka.core.Instances, kotlin.Int, weka.core.Attribute, kotlin.String)/rowIndex),[attribute](set.md#com.github.stevenlang.wekakt.extensions$set(weka.core.Instances, kotlin.Int, weka.core.Attribute, kotlin.String)/attribute)).
 
 ``` kotlin
-//Unresolved: sampleSetStringValueAtRowIndexAndAttribute
+val data: Instances = getData()
+val att: Attribute = data.attributes[0]
+data[4, att] = "car"
 ```
 
 ### Parameters

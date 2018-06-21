@@ -7,7 +7,9 @@
 Get the attribute value at [attributeIndex](get.md#com.github.stevenlang.wekakt.extensions$get(weka.core.Instance, kotlin.Int)/attributeIndex).
 
 ``` kotlin
-//Unresolved: sampleGetValueByAttributeIndex
+val iris: Instances = getIris()
+val row: Instance = iris[4]
+val value: Double = row[2]
 ```
 
 ### Parameters
@@ -22,7 +24,10 @@ Value at [attributeIndex](get.md#com.github.stevenlang.wekakt.extensions$get(wek
 Get the attribute value for [attribute](get.md#com.github.stevenlang.wekakt.extensions$get(weka.core.Instance, weka.core.Attribute)/attribute).
 
 ``` kotlin
-//Unresolved: sampleGetValueByAttribute
+val iris: Instances = getIris()
+val sepalLengthAtt: Attribute = iris.attributes[0]
+val row: Instance = iris[4]
+val value: Double = row[sepalLengthAtt]
 ```
 
 ### Parameters

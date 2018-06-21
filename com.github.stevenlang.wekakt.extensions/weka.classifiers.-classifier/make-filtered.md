@@ -7,7 +7,13 @@
 Wraps this classifier in a [FilteredClassifier](http://weka.sourceforge.net/doc.stable/weka/classifiers/meta/FilteredClassifier.html) and adds the given [filter](make-filtered.md#com.github.stevenlang.wekakt.extensions$makeFiltered(weka.classifiers.Classifier, com.github.stevenlang.wekakt.extensions.makeFiltered.T, kotlin.Function1((com.github.stevenlang.wekakt.extensions.makeFiltered.T, kotlin.Unit)))/filter) object.
 
 ``` kotlin
-//Unresolved: sampleMakeFilteredClassifier
+val j48: Classifier = J48()
+
+// Wrap with filter
+val filteredJ48 = j48.makeFiltered(Resample()) {
+    sampleSizePercent = 33.0
+    noReplacement = true
+}
 ```
 
 ### Parameters

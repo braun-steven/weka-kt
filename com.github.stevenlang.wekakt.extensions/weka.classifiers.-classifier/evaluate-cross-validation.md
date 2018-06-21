@@ -7,7 +7,11 @@
 Create a crossvalidation evalution.
 
 ``` kotlin
-//Unresolved: sampleClassifierCrossValidation
+val j48: Classifier = J48()
+val iris: Instances = getIris()
+
+// Evaluate cross-validation
+val eval: Evaluation = j48.evaluateCrossValidation(data = iris, numFolds = 10, seed = 1)
 ```
 
 ### Parameters

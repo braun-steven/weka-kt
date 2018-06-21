@@ -7,7 +7,12 @@
 Create a clusterer evaluation. Builds the clusterer and tests it on the given test set.
 
 ``` kotlin
-//Unresolved: sampleClustererEvaluateHoldout
+val em: Clusterer = EM()
+val iris: Instances = getIris()
+val (train, test) = iris.split(33.0)
+
+// Evaluate hold-out
+val eval: ClustererEvaluation = em.evaluate(trainData = train, testData = test)
 ```
 
 ### Parameters
@@ -25,7 +30,11 @@ Create a clusterer evaluation. Split input data into train and test set. Builds 
 on the training set and tests it on the test set.
 
 ``` kotlin
-//Unresolved: sampleClustererEvaluateHoldoutTestpercentage
+val em: Clusterer = EM()
+val iris: Instances = getIris()
+
+// Evaluate hold-out
+val eval: ClustererEvaluation = em.evaluate(data = iris, testPercentage = 33.0)
 ```
 
 ### Parameters

@@ -8,7 +8,9 @@
 Set the attribute value at [attributeIndex](set.md#com.github.stevenlang.wekakt.extensions$set(weka.core.Instance, kotlin.Int, kotlin.Number)/attributeIndex).
 
 ``` kotlin
-//Unresolved: sampleSetValueByAttributeIndex
+val iris: Instances = getIris()
+val row: Instance = iris[4]
+row[0] = 12.0
 ```
 
 ### Parameters

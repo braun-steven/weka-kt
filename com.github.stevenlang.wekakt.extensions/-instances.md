@@ -8,7 +8,7 @@ Create a new Instances object based on a given filepath.
 Imitates constructor extension via function.
 
 ``` kotlin
-//Unresolved: sampleInstancesConstructorWithFilePath
+val iris = Instances("src/test/resources/datasets/iris.arff", classIndex = 4)
 ```
 
 ### Parameters

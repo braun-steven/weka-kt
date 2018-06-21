@@ -7,7 +7,10 @@
 Remove a given attribute by index.
 
 ``` kotlin
-//Unresolved: sampleRemoveAttribute
+val iris: Instances = getIris()
+
+// Remove the third attribute
+val irisReduced: Instances = iris.removeAttribute(3)
 ```
 
 ### Parameters

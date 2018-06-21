@@ -7,7 +7,12 @@
 Create a holdout evaluation. Builds the classifier and tests it on the given test set.
 
 ``` kotlin
-//Unresolved: sampleClassifierEvaluateHoldoutTrainTest
+val j48: Classifier = J48()
+val iris: Instances = getIris()
+val (train, test) = iris.split(33.0)
+
+// Evaluate hold-out
+val eval: Evaluation = j48.evaluateHoldout(trainData = train, testData = test)
 ```
 
 ### Parameters
@@ -24,7 +29,11 @@ Evaluation object containing predictions and statistics
 Create a holdout evaluation. Builds the classifier and tests it on the given test set.
 
 ``` kotlin
-//Unresolved: sampleClassifierEvaluateHoldoutTestpercentage
+val j48: Classifier = J48()
+val iris: Instances = getIris()
+
+// Evaluate hold-out
+val eval: Evaluation = j48.evaluateHoldout(data = iris, testPercentage = 33.0)
 ```
 
 ### Parameters

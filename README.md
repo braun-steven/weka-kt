@@ -4,6 +4,8 @@
 # Weka-Kt: Kotlin Extensions for Weka
 A set of Kotlin extensions for [Weka](https://www.cs.waikato.ac.nz/ml/weka/). The goal is to make the use of Weka more convenient and idiomatic.
 
+The full API documentation is available [here](https://steven-lang.github.io/weka-kt/).
+
 Available extensions:
 - [Loading Data](#loading-data)
 - [Getting/Setting Data](#gettingsetting-data)

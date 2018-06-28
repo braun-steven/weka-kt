@@ -1,5 +1,4 @@
-![Weka-Kt](resources/Weka_3_kotlin_full.png)
-
+<img src="resources/Weka_3_kotlin_full.png" width="300">
 
 # Weka-Kt: Kotlin Extensions for Weka
 A set of Kotlin extensions for [Weka](https://www.cs.waikato.ac.nz/ml/weka/). The goal is to make the use of Weka more convenient and idiomatic.

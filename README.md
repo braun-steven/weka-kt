@@ -24,13 +24,13 @@ To add Weka-Kt to your project, add the following dependency to your dependency 
 <dependency>
     <groupId>com.github.steven-lang</groupId>
     <artifactId>weka-kt</artifactId>
-    <version>0.0.6</version>
+    <version>0.0.7</version>
 </dependency>
 ```
 
 **Gradle**
 ```
-compile 'com.github.steven-lang:weka-kt:0.0.6'
+compile 'com.github.steven-lang:weka-kt:0.0.7'
 ```
 ___
 

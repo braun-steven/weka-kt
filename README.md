@@ -105,23 +105,17 @@ irisData[6, 3] = 100.0
 
 **Kotlin** (slices)
 ```kotlin
-// Get rows in the interval [5, 20]
-val sliceRows = irisData.sliceRows(5..20)
+// Get rows 2-20
+val rowSubset = iris[2..20]
 
-// Get attributes in the interval [2..3]
-val sliceAtts = irisData.sliceAttributes(2..3)
+// Get rows 2-20 (explicit attribute selection with <ALL>)
+val rowSubsetEq = iris[2..20, ALL]
 
-// Combine row and attribute slicing
-val slice = irisData.slice(1..2, 1..3)
+// Get all rows and only columns 1-2
+val attributeSubset = iris[ALL, 1..2]
 
-// Combine row and attribute slicing using array accessor
-val subset = irisData[1..2, 3..3]
-
-// Slice rows by explicit index
-val rows = irisData.sliceRows(5, 25, 50, 75)
-
-// Slice rows by explicit index
-val attributes = irisData.sliceAttributes(0, 1, 3)
+// Get rows 2-20 and columnes 1-2
+val subset = iris[2..20, 1..2]
 ```
 
 ### Using Filters

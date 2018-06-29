@@ -66,44 +66,18 @@ private fun sampleSplitData() {
     val (train, test) = iris.split(testPercentage = 33.0)
 }
 
-private fun sampleSliceAttributesRange(){
-    val iris: Instances = getIris()
-
-    // Get attributes in the interval [2..3]
-    val sliceAtts: Instances = iris.sliceAttributes(2..3)
-}
-
-private fun sampleSliceRowsRange(){
-    val iris: Instances = getIris()
-
-    // Get rows in the interval [2..3]
-    val sliceRows: Instances = iris.sliceRows(2..3)
-}
-private fun sampleSliceRowsandAttributesRange(){
-    val iris: Instances = getIris()
-
-    // Get rows from 5 to 50 and attributes from 2 to 3
-    val sliced: Instances = iris.slice(5..50, 2..3)
-}
-
-private fun sampleSliceRowsIndices(){
-    val iris: Instances = getIris()
-
-    // Get rows 2, 5 and 8
-    val sliceRows: Instances = iris.sliceRows(2, 5, 8)
-}
-private fun sampleSliceAttributeIndices(){
-    val iris: Instances = getIris()
-
-    // Get attributes 0, 1 and 3
-    val sliceAttributes: Instances = iris.sliceAttributes(0, 1, 3)
-}
-
 private fun sampleGetRowAndAttributeIndexRange(){
     val iris: Instances = getIris()
 
     // Get rows from 5 to 50 and attributes from 2 to 3
     val irisReduces: Instances = iris[5..50, 2..3]
+}
+
+private fun sampleGetRowsByIndexRange(){
+    val iris: Instances = getIris()
+
+    // Get rows from 5 to 50
+    val rows: Instances = iris[5..50]
 }
 
 

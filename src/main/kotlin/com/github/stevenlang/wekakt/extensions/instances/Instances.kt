@@ -200,13 +200,15 @@ fun Instances.split(testPercentage: Double): Pair<Instances, Instances> {
  *
  * @param range Range of ints indicating the slice interval
  * @return Subset of this dataset, that is only the attributes in the given range are in the result
- * @sample sampleSliceAttributesRange
  */
-fun Instances.sliceAttributes(range: IntRange): Instances {
+private fun Instances.sliceAttributes(range: IntRange): Instances {
     return this.filter(Remove()) {
-        val rangeString = "${range.start + 1}-${range.endInclusive + 1}"
+        attributeIndices = if (range == IntRange.EMPTY) {
+            "1-${this@sliceAttributes.numAttributes()}"
+        } else {
+            "${range.start + 1}-${range.endInclusive + 1}"
+        }
         invertSelection = true
-        attributeIndices = rangeString
     }
 }
 
@@ -216,14 +218,20 @@ fun Instances.sliceAttributes(range: IntRange): Instances {
  *
  * @param range Range of ints indicating the slice interval
  * @return Subset of this dataset, that is only the rows in the given range are in the result
- * @sample sampleSliceRowsRange
  */
-fun Instances.sliceRows(range: IntRange): Instances {
+private fun Instances.sliceRows(range: IntRange): Instances {
     return this.filter(RemoveRange()) {
         invertSelection = true
-        instancesIndices = "${range.start + 1}-${range.endInclusive + 1}"
+        instancesIndices = if (range == IntRange.EMPTY) {
+            "1-${this@sliceRows.numInstances()}"
+        } else {
+            "${range.start + 1}-${range.endInclusive + 1}"
+        }
     }
 }
+
+val ALL = IntRange.EMPTY
+
 
 /**
  * Slice the given range of attributes out of the dataset.
@@ -232,9 +240,8 @@ fun Instances.sliceRows(range: IntRange): Instances {
  * @param rangeAttributes Range of ints indicating the attribute slice interval
  * @return Subset of this dataset, that is only the attributes and rows in the given ranges are in
  * the result
- * @sample sampleSliceRowsandAttributesRange
  */
-fun Instances.slice(rangeRows: IntRange, rangeAttributes: IntRange): Instances {
+private fun Instances.slice(rangeRows: IntRange, rangeAttributes: IntRange): Instances {
     return this.sliceRows(rangeRows).sliceAttributes(rangeAttributes)
 }
 
@@ -243,9 +250,8 @@ fun Instances.slice(rangeRows: IntRange, rangeAttributes: IntRange): Instances {
  *
  * @param indices List of indices to return the rows of
  * @return Subset of this dataset containing only the rows specified in [indices]
- * @sample sampleSliceRowsIndices
  */
-fun Instances.sliceRows(vararg indices: Int): Instances {
+private fun Instances.sliceRows(vararg indices: Int): Instances {
     return this.filter(RemoveRange()) {
         val rangeString = indices.joinToString(separator = ",", transform = { i -> "${i + 1}" })
         invertSelection = true
@@ -258,9 +264,8 @@ fun Instances.sliceRows(vararg indices: Int): Instances {
  *
  * @param indices List of indices to return the attributes of
  * @return Subset of this dataset containing only the attributes specified in [indices]
- * @sample sampleSliceAttributeIndices
  */
-fun Instances.sliceAttributes(vararg indices: Int): Instances {
+private fun Instances.sliceAttributes(vararg indices: Int): Instances {
     return this.filter(Remove()) {
         val rangeString = indices.joinToString(separator = ",", transform = { i -> "${i + 1}" })
         invertSelection = true
@@ -269,7 +274,20 @@ fun Instances.sliceAttributes(vararg indices: Int): Instances {
 }
 
 /**
- * Slice the given range of attributes out of the dataset.
+ * Slice the given range of rows out of the dataset.
+ *
+ * @param rangeRows Range of ints indicating the row slice interval
+ * @return Subset of this dataset, that is only the attributes and rows in the given ranges are in
+ * the result
+ * @see [Instances.slice]
+ * @sample sampleGetRowsByIndexRange
+ */
+operator fun Instances.get(rangeRows: IntRange): Instances {
+    return slice(rangeRows, ALL)
+}
+
+/**
+ * Slice the given range of rows and attributes out of the dataset.
  *
  * @param rangeRows Range of ints indicating the row slice interval
  * @param rangeAttributes Range of ints indicating the attribute slice interval
@@ -280,6 +298,34 @@ fun Instances.sliceAttributes(vararg indices: Int): Instances {
  */
 operator fun Instances.get(rangeRows: IntRange, rangeAttributes: IntRange): Instances {
     return slice(rangeRows, rangeAttributes)
+}
+
+/**
+ * Slice the given range of attributes out of the dataset.
+ *
+ * @param indicesRows List of ints indicating the row slice indices
+ * @param indicesAttributes List of ints indicating the attribute slice idnices
+ * @return Subset of this dataset, that is only the attributes and rows in the given indices are in
+ * the result
+ * @see [Instances.slice]
+ * @sample sampleGetRowAndAttributeIndexRange
+ */
+operator fun Instances.get(indicesRows: IntArray, indicesAttributes: IntArray): Instances {
+    return this.sliceRows(*indicesRows).sliceAttributes(*indicesAttributes)
+}
+
+/**
+ * Slice the given range of attributes out of the dataset.
+ *
+ * @param indicesRows List of ints indicating the row slice indices
+ * @param indicesAttributes List of ints indicating the attribute slice idnices
+ * @return Subset of this dataset, that is only the attributes and rows in the given indices are in
+ * the result
+ * @see [Instances.slice]
+ * @sample sampleGetRowAndAttributeIndexRange
+ */
+operator fun Instances.get(indicesRows: Array<Int>, indicesAttributes: Array<Int>): Instances {
+    return get(indicesRows.toIntArray(), indicesAttributes.toIntArray())
 }
 
 /**

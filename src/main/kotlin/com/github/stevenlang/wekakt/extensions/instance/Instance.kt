@@ -1,4 +1,4 @@
-package com.github.stevenlang.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions.instance
 
 import weka.core.Attribute
 import weka.core.Instance

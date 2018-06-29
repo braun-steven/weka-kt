@@ -1,6 +1,8 @@
-package com.github.stevenlang.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions.clusterer
 
-import weka.classifiers.meta.FilteredClassifier
+import com.github.stevenlang.wekakt.extensions.instances.classIndex
+import com.github.stevenlang.wekakt.extensions.instances.removeClassAttribute
+import com.github.stevenlang.wekakt.extensions.instances.split
 import weka.clusterers.ClusterEvaluation
 import weka.clusterers.Clusterer
 import weka.clusterers.DensityBasedClusterer

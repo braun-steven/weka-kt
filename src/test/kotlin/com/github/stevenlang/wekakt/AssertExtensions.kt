@@ -1,6 +1,6 @@
 package com.github.stevenlang.wekakt
 
-import com.github.stevenlang.wekakt.extensions.isEqualTo
+import com.github.stevenlang.wekakt.extensions.instances.isEqualTo
 import org.amshove.kluent.shouldBeLessThan
 import org.junit.Assert
 import weka.classifiers.evaluation.Prediction

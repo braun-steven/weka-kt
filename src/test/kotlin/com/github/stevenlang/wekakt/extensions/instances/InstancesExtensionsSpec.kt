@@ -1,4 +1,4 @@
-package com.github.stevenlang.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions.instances
 
 import com.github.stevenlang.wekakt.getIris
 import com.github.stevenlang.wekakt.shouldEqualTo

@@ -1,4 +1,4 @@
-package com.github.stevenlang.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions.optionhandler
 
 import weka.core.OptionHandler
 

@@ -1,5 +1,6 @@
-package com.github.stevenlang.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions.classifier
 
+import com.github.stevenlang.wekakt.extensions.instances.split
 import weka.classifiers.Classifier
 import weka.classifiers.Evaluation
 import weka.classifiers.meta.FilteredClassifier

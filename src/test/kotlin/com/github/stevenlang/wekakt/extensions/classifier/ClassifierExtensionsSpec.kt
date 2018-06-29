@@ -1,6 +1,9 @@
-package com.github.stevenlang.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions.classifier
 
 import com.github.stevenlang.wekakt.assertPredictionsAreEqual
+import com.github.stevenlang.wekakt.extensions.classifier.evaluateCrossValidation
+import com.github.stevenlang.wekakt.extensions.classifier.evaluateHoldout
+import com.github.stevenlang.wekakt.extensions.instances.split
 import com.github.stevenlang.wekakt.getIris
 import org.jetbrains.spek.api.dsl.given
 import org.jetbrains.spek.api.dsl.it

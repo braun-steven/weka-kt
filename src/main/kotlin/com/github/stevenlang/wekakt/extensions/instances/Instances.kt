@@ -1,18 +1,17 @@
-package com.github.stevenlang.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions.instances
 
+import com.github.stevenlang.wekakt.extensions.instance.get
+import com.github.stevenlang.wekakt.extensions.instance.isEqualTo
+import com.github.stevenlang.wekakt.extensions.instance.set
 import weka.core.Attribute
 import weka.core.Instance
 import weka.core.Instances
 import weka.core.WekaException
-import weka.core.converters.ArffLoader
-import weka.core.converters.CSVLoader
 import weka.core.converters.ConverterUtils
-import weka.core.converters.Loader
 import weka.filters.Filter
 import weka.filters.unsupervised.attribute.Remove
 import weka.filters.unsupervised.instance.RemovePercentage
 import weka.filters.unsupervised.instance.RemoveRange
-import java.io.File
 
 /*
  * Extensions for the Weka [weka.core.Instances] class.

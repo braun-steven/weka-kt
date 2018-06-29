@@ -1,6 +1,10 @@
-package com.github.stevenlang.wekakt.extensions
+package com.github.stevenlang.wekakt.extensions.clusterer
 
 import com.github.stevenlang.wekakt.DOUBLE_EQ_PRECISION
+import com.github.stevenlang.wekakt.extensions.clusterer.crossValidate
+import com.github.stevenlang.wekakt.extensions.clusterer.evaluate
+import com.github.stevenlang.wekakt.extensions.instances.removeClassAttribute
+import com.github.stevenlang.wekakt.extensions.instances.split
 import com.github.stevenlang.wekakt.getIris
 import org.amshove.kluent.shouldBeLessThan
 import org.amshove.kluent.shouldEqualTo
